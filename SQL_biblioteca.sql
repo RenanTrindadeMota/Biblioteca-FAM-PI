@@ -96,4 +96,21 @@ ON Emprestimo.ID_Livro = Livros.ID_Livro
 SELECT *
 FROM vw_Emprestimo_Completo
 
-DROP VIEW vw_Emprestimo_Completo
+--DROP VIEW vw_Emprestimo_Completo
+
+CREATE PROCEDURE AtualizarStatusEmprestimos
+AS
+BEGIN
+    -- Atualiza para "Atrasado" se a data de devolução for passada e o status ainda estiver "Em Aberto"
+    UPDATE Emprestimo
+    SET [Status] = 'Atrasado'
+    WHERE DataDevolucao < GETDATE() AND [Status] = 'Em Aberto';
+
+    -- Atualiza para "Perda" se o empréstimo já está atrasado por mais de 30 dias
+    UPDATE Emprestimo
+    SET [Status] = 'Perda'
+    WHERE DataDevolucao < DATEADD(DAY, -30, GETDATE()) AND [Status] = 'Atrasado';
+END;
+GO
+
+EXEC AtualizarStatusEmprestimos;
