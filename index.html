@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Empréstimo de Livros</title>
+</head>
+<body>
+    <h1>Registro de Empréstimo</h1>
+    
+    <form id="emprestimoForm">
+        <label for="nomeUsuario">Nome do Usuário:</label>
+        <input type="text" id="nomeUsuario" required><br>
+
+        <label for="turma">Turma:</label>
+        <input type="text" id="turma" required><br>
+
+        <label for="telefone">Telefone:</label>
+        <input type="text" id="telefone" required><br>
+
+        <label for="periodo">Período:</label>
+        <input type="text" id="periodo" required><br>
+
+        <label for="livroId">ID do Livro:</label>
+        <input type="number" id="livroId" required><br>
+
+        <label for="dataEmprestimo">Data do Empréstimo:</label>
+        <input type="date" id="dataEmprestimo" required><br>
+
+        <label for="dataDevolucao">Data de Devolução:</label>
+        <input type="date" id="dataDevolucao" required><br>
+
+        <button type="button" onclick="registrarEmprestimo()">Registrar Empréstimo</button>
+    </form>
+
+
+    <h2>Registrar Devolução</h2>
+<form id="devolucaoForm">
+    <label for="emprestimoId">ID do Empréstimo:</label>
+    <input type="number" id="emprestimoId" required>
+    <button type="button" onclick="registrarDevolucao()">Registrar Devolução</button>
+</form>
+
+
+
+<!-- Tabela de emprestimo -->
+
+<h2>Lista de Empréstimos</h2>
+
+<!-- Filtros para a tabela -->
+<div id="filtros" style="margin-bottom: 15px;">
+    <label for="filtroStatus">Status:</label>
+    <select id="filtroStatus">
+        <option value="">Todos</option>
+        <option value="Em Aberto">Em Aberto</option>
+        <option value="Atrasado">Atrasado</option>
+        <option value="Perda">Perda</option>
+        <option value="Devolvido">Devolvido</option>
+    </select>
+
+    <label for="filtroUsuario">ID do Usuário:</label>
+    <input type="number" id="filtroUsuario" placeholder="Digite o ID do usuário" style="margin-right: 10px;">
+
+    <label for="filtroLivro">Nome do Livro:</label>
+    <input type="text" id="filtroLivro" placeholder="Digite o nome do livro" style="margin-right: 10px;">
+
+    <button type="button" onclick="aplicarFiltros()">Aplicar Filtros</button>
+    <button type="button" onclick="carregarEmprestimos()">Limpar Filtros</button>
+</div>
+
+<!-- Tabela de empréstimos -->
+<table id="tabelaEmprestimos" border="1" style="margin-top: 15px; width: 100%; border-collapse: collapse;">
+    <thead>
+        <tr>
+            <th>ID Emprestimo</th>
+            <th>Usuário</th>
+            <th>Livro</th>
+            <th>Data Empréstimo</th>
+            <th>Data Devolução</th>
+            <th>Status</th>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+
+
+<script src="script.js" defer></script>
+ <!-- O atributo defer para garantir que o arquivo JavaScript seja carregado após o HTML. -->
+
+
+</body>
+</html>
