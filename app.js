@@ -4,7 +4,7 @@ const express = require('express');
 const sql = require('mssql');
 // mssql: Biblioteca para se conectar e interagir com o banco de dados SQL Server.
 
-// const cron = require("node-cron");
+const cron = require('node-cron');
 // código para instalar node-cron, que torna funções automáticas: npm install node-cron
 // o cron é um job, serve para automatizar, como em casos que uma tabela precise ser atualizada as 2h da manhã.
 
@@ -42,7 +42,7 @@ app.use(express.static('public'));
 
 // Configuração de conexão com o banco de dados
 const dbConfig = {
-    user: 'appUser4',        // Substitua com seu usuário do SQL Server
+    user: 'appUser1',        // Substitua com seu usuário do SQL Server
     password: '12345',      // Substitua com sua senha do SQL Server
     server: 'localhost',        // Ou o nome do seu servidor SQL
     database: 'Biblioteca',
@@ -161,10 +161,27 @@ app.post('/registrarEmprestimo', async (req, res) => {
     const { usuarioId, livroId, dataEmprestimo, dataDevolucao, status } = req.body;
 
     try {
+        // Consultar a quantidade do livro usando o livroId recebido
+        const result = await sql.query`
+            SELECT Quantidade
+            FROM Livros
+            WHERE ID_Livro = ${livroId};
+        `;
+        
+        const quantidadeDisponivel = result.recordset[0].Quantidade;
+
+        // Se a quantidade for 0, impedir o empréstimo
+        if (quantidadeDisponivel === 0) {
+            console.log('Livro esgotado no estoque');
+            return res.status(400).send('Empréstimo não permitido: livro esgotado no estoque.');
+        }
+
+        // Registrar o empréstimo
         await sql.query`
             INSERT INTO Emprestimo (ID_Usuario, ID_Livro, DataEmprestimo, DataDevolucao, Status)
-            VALUES (${usuarioId}, ${livroId}, ${dataEmprestimo}, ${dataDevolucao}, ${status})
+            VALUES (${usuarioId}, ${livroId}, ${dataEmprestimo}, ${dataDevolucao}, ${status});
         `;
+
         res.send('Empréstimo registrado com sucesso');
 
         // Chamar a procedure para atualizar o status
@@ -224,6 +241,16 @@ app.get('/listarEmprestimos', async (req, res) => {
 });
 
 
+// Agendar execução da procedure diariamente às 00:00
+cron.schedule('0 0 * * *', async () => {
+    try {
+        console.log('Executando AtualizarStatusEmprestimos...');
+        await pool.request().execute('AtualizarStatusEmprestimos');
+        console.log('Procedure AtualizarStatusEmprestimos executada com sucesso.');
+    } catch (err) {
+        console.error('Erro ao executar AtualizarStatusEmprestimos:', err);
+    }
+});
 
 
 // Inicia o servidor na porta 3000
