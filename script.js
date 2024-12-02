@@ -144,3 +144,30 @@ carregarEmprestimos();
 window.registrarEmprestimo = registrarEmprestimo;
 window.registrarDevolucao = registrarDevolucao;
 window.carregarEmprestimos = carregarEmprestimos;
+
+// Código da barra lateral:
+const menuToggle = document.getElementById('menu-toggle'); 
+const barraLateral = document.querySelector('.barra-lateral');
+const closeSidebar = document.getElementById('close-sidebar');
+
+// Alterna a classe "open" na barra lateral e esconde o botão hambúrguer
+menuToggle.addEventListener('click', () => {
+  barraLateral.classList.toggle('open');
+  menuToggle.classList.toggle('hidden'); // Esconde ou mostra o botão
+});
+
+// Adiciona evento de clique na seta para minimizar a barra lateral
+closeSidebar.addEventListener('click', () => {
+  barraLateral.classList.remove('open');
+  menuToggle.classList.remove('hidden'); // Mostra o botão hambúrguer novamente
+});
+
+// Adiciona também a funcionalidade para fechar a barra clicando fora dela
+document.addEventListener('click', (event) => {
+  // Se clicar fora da barra ou do botão, fecha a barra e mostra o hambúrguer
+  if (!barraLateral.contains(event.target) && !menuToggle.contains(event.target)) {
+    barraLateral.classList.remove('open');
+    menuToggle.classList.remove('hidden');
+  }
+});
+

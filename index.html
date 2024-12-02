@@ -3,85 +3,159 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
     <title>Empréstimo de Livros</title>
 </head>
 <body>
-    <h1>Registro de Empréstimo</h1>
-    
-    <form id="emprestimoForm">
-        <label for="nomeUsuario">Nome do Usuário:</label>
-        <input type="text" id="nomeUsuario" required><br>
+    <div class="alinhar">
+        <button id="menu-toggle" aria-label="Abrir Menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
 
-        <label for="turma">Turma:</label>
-        <input type="text" id="turma" required><br>
+        <div class="barra-lateral">
+            <button id="close-sidebar" aria-label="Fechar Barra Lateral"></button>
 
-        <label for="telefone">Telefone:</label>
-        <input type="text" id="telefone" required><br>
+            <a href="../biblioteca/biblioteca.html"><img src="img/senai_logo.png" id="img"></a>
+            <a href="../biblioteca/biblioteca.html"><div class="opcao" id="biblioteca">
+                <div class="seta"></div>
+                <p>Biblioteca</p>
+            </div></a>
+            <a href="add_llivro/add_livro.html"><div class="opcao" id="add">
+                <div class="add"></div>
+                <p>Adicionar Livro</p>
+            </div></a>
+            <a href="emprestimo.html"><div class="opcao" id="emprestimo">
+                <p>Fazer Empréstimo</p>
+            </div></a>
+            <a href=""><div class="opcao" id="frequencia">
+                <p>Lista de Frequência</p>
+            </div></a>
+            <a href="../index.html"><div class="opcao" id="sair">
+                <p>Sair</p>
+            </div></a>
+        </div>
+        
+        <div class="area">
+            <!-- div do perfil: -->
+            <div class="conta">
+                <div class="txt">
+                    <p>Usuário</p>
+                    <p id="menu">Menu da conta</p>
+                </div>
+                <div class="img-conta"></div>
+            </div>
+                
+            <h1 id="title">Empréstimo de Livros</h1>
+            <br>
+            <form id="emprestimoForm">
+                <h2 id="titleinfo">Informações do Leitor:</h2>
+                <br>
+                <div class="ajuste-emprestimo">
+                    <div class="bloco">
+                        <label for="nomeUsuario">Nome do Usuário:</label>
+                        <input type="text" id="nomeUsuario" required><br>
+                    </div>
+                    <div class="bloco">
+                        <label for="turma">Turma:</label>
+                        <input type="text" id="turma" required><br>
+                    </div>
+                </div>
+                <div class="ajuste-emprestimo">
+                    <div class="bloco">
+                        <label for="telefone">Telefone:</label>
+                        <input type="text" id="telefone" required><br>
+                    </div>
+                    <div class="bloco">
+                        <label for="periodo">Período:</label>
+                        <input type="text" id="periodo" required><br>
+                    </div>
+                </div>
+                <div class="ajuste-emprestimo">
+                    <div class="bloco">
+                        <label for="livroId">ID do Livro:</label>
+                        <input type="number" id="livroId" required><br>
+                    </div>
+                    <div class="bloco">
+                        <label for="dataEmprestimo">Data do Empréstimo:</label>
+                        <input type="date" id="dataEmprestimo" required><br>
+                    </div>
+                </div>
+                <div class="ajuste-emprestimo">
+                    <div class="bloco">
+                        <label for="dataDevolucao">Data de Devolução:</label>
+                        <input type="date" id="dataDevolucao" required><br>
+                    </div>
+                    <div class="area-btn">
+                        <button id="efetuar" type="button" onclick="registrarEmprestimo()">Registrar Empréstimo</button>
+                    </div>
+                </div>
+            </form>
+            <br>
+            <br>
 
-        <label for="periodo">Período:</label>
-        <input type="text" id="periodo" required><br>
+            <form id="devolucaoForm">
+                <h2 id="titleinfo">Registrar Devolução</h2>
+                <br>
+                <div class="ajuste-emprestimo">
+                    <div class="bloco">
+                        <label for="emprestimoId">ID do Empréstimo:</label>
+                        <input type="number" id="emprestimoId" required>
+                    </div>
+                    <div class="area-btn">
+                        <button id="efetuar" type="button" onclick="registrarDevolucao()">Registrar Devolução</button>
+                    </div>
+                </div>
+            </form>
+            <br>
+            <br>
 
-        <label for="livroId">ID do Livro:</label>
-        <input type="number" id="livroId" required><br>
+            <!-- Tabela de emprestimo -->
+            <h2 id="title">Lista de Empréstimos</h2>
+                <br>
+            <!-- Filtros para a tabela -->
+            <div id="filtros">
+                <div class="bloco-filtro">
+                    <label for="filtroStatus">Status:</label>
+                    <select id="filtroStatus">
+                        <option value="">Todos</option>
+                        <option value="Em Aberto">Em Aberto</option>
+                        <option value="Atrasado">Atrasado</option>
+                        <option value="Perda">Perda</option>
+                        <option value="Devolvido">Devolvido</option>
+                    </select>
+                </div>
+                <div class="bloco-filtro">
+                    <label for="filtroUsuario">ID do Usuário:</label>
+                    <input type="number" id="filtroUsuario" placeholder="Digite o ID do usuário" style="margin-right: 10px;">
+                </div>
+                <div class="bloco-filtro">
+                    <label for="filtroLivro">Nome do Livro:</label>
+                    <input type="text" id="filtroLivro" placeholder="Digite o nome do livro" style="margin-right: 10px;">
+                </div>
+                <div class="bloco-filtro">
+                    <button type="button" onclick="aplicarFiltros()">Aplicar Filtros</button>
+                    <button type="button" onclick="carregarEmprestimos()">Limpar Filtros</button>
+                </div>
+            </div>
 
-        <label for="dataEmprestimo">Data do Empréstimo:</label>
-        <input type="date" id="dataEmprestimo" required><br>
-
-        <label for="dataDevolucao">Data de Devolução:</label>
-        <input type="date" id="dataDevolucao" required><br>
-
-        <button type="button" onclick="registrarEmprestimo()">Registrar Empréstimo</button>
-    </form>
-
-
-    <h2>Registrar Devolução</h2>
-<form id="devolucaoForm">
-    <label for="emprestimoId">ID do Empréstimo:</label>
-    <input type="number" id="emprestimoId" required>
-    <button type="button" onclick="registrarDevolucao()">Registrar Devolução</button>
-</form>
-
-
-
-<!-- Tabela de emprestimo -->
-
-<h2>Lista de Empréstimos</h2>
-
-<!-- Filtros para a tabela -->
-<div id="filtros" style="margin-bottom: 15px;">
-    <label for="filtroStatus">Status:</label>
-    <select id="filtroStatus">
-        <option value="">Todos</option>
-        <option value="Em Aberto">Em Aberto</option>
-        <option value="Atrasado">Atrasado</option>
-        <option value="Perda">Perda</option>
-        <option value="Devolvido">Devolvido</option>
-    </select>
-
-    <label for="filtroUsuario">ID do Usuário:</label>
-    <input type="number" id="filtroUsuario" placeholder="Digite o ID do usuário" style="margin-right: 10px;">
-
-    <label for="filtroLivro">Nome do Livro:</label>
-    <input type="text" id="filtroLivro" placeholder="Digite o nome do livro" style="margin-right: 10px;">
-
-    <button type="button" onclick="aplicarFiltros()">Aplicar Filtros</button>
-    <button type="button" onclick="carregarEmprestimos()">Limpar Filtros</button>
-</div>
-
-<!-- Tabela de empréstimos -->
-<table id="tabelaEmprestimos" border="1" style="margin-top: 15px; width: 100%; border-collapse: collapse;">
-    <thead>
-        <tr>
-            <th>ID Emprestimo</th>
-            <th>Usuário</th>
-            <th>Livro</th>
-            <th>Data Empréstimo</th>
-            <th>Data Devolução</th>
-            <th>Status</th>
-        </tr>
-    </thead>
-    <tbody></tbody>
-</table>
+            <!-- Tabela de empréstimos -->
+            <table id="tabelaEmprestimos" border="1" style="margin-top: 15px; width: 100%; border-collapse: collapse;">
+                <thead>
+                    <tr>
+                        <th>ID Emprestimo</th>
+                        <th>Usuário</th>
+                        <th>Livro</th>
+                        <th>Data Empréstimo</th>
+                        <th>Data Devolução</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>    
+    </div>
 
 
 <script src="script.js" defer></script>
