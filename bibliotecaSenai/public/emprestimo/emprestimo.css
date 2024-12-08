@@ -1,0 +1,649 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: "Roboto", serif;
+    font-weight: 300;
+    font-style: normal;
+}
+
+
+#title{
+    /* position: absolute; */
+    top: 100px;
+    font-size: 65px;
+}
+
+#titleinfo{
+    font-size: 40px;
+}
+
+
+.alinhar{
+    display: flex;
+    max-width: 100%; /* Ajuste flexível para largura total da tela */
+    height: 100vh;   /* Define a altura como 100% da viewport */
+    margin: 0 auto;
+}
+
+.area{
+    display: flex;
+    flex-direction: column; 
+    justify-content: flex-start; /* Ajusta o alinhamento interno */
+    align-items: center; 
+    margin-left: 235px;
+    flex-grow: 1; /* Faz com que a área ocupe o restante do espaço */
+    padding: 20px; 
+}
+
+#menu-toggle {
+    display: none; /* Esconde o botão hambúrguer */
+}
+
+#close-sidebar {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: none;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    color: #000;
+    display: none; /* Só aparece quando a barra está aberta */
+    transition: opacity 0.3s ease;
+}
+
+.barra-lateral.open #close-sidebar {
+    display: block; /* Aparece apenas quando a barra lateral está aberta */
+}
+
+
+.barra-lateral img{
+    margin-top: 50px;
+    margin-bottom: 40px;
+    width: 170px;
+    height: 50px;
+}
+
+.barra-lateral{
+    position: fixed; /* Fixa a barra na lateral */
+    top: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: 235px;
+    height: 100vh;
+    background-color: rgba(246, 246, 246, 1);
+    transition: transform 0.3s ease;
+}
+
+.barra-lateral.open {
+    left: 0; /* Aparece na tela */
+}
+
+.barra-lateral a{
+    text-decoration: none;
+    color: black;
+}
+
+#emprestimo{
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    background-color: rgb(255, 255, 255);
+}
+
+.seta{
+    background-image: url(img/seta.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    
+    width: 14px;
+    height: 11px;
+}
+
+.add{
+    background-image: url(img/add.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 20px;
+    height:20px;
+}
+
+.opcao{
+    display: flex;
+    align-items: center;
+    padding-left: 36px;
+    gap: 10px;
+    height: 40px;
+    width: 235px;
+    cursor: pointer;
+}
+
+.opcao:hover {
+    background-color: white;
+}
+
+
+input{
+    width: 100vw; /* Ajusta para o tamanho do contêiner pai */
+    max-width: 450px; /* Define um limite para telas maiores */
+    height: 50px;
+    padding: 10px;
+    border-radius: 4px;
+    background-color: rgba(248, 254, 255, 1);
+    border: 1px solid rgba(186, 215, 227, 1);
+    box-sizing: border-box; /* Inclui padding na largura e altura */
+}
+
+#emprestimoForm{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%; /* Faz a largura ocupar todo o espaço disponível */
+    max-width: 1200px; /* Define um limite máximo */
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra suave */
+    background-color: #fff; /* Adiciona fundo branco para destacar */
+    border-radius: 8px; /* Cantos arredondados */
+    box-sizing: border-box; /* Inclui padding na largura e altura totais */
+}
+
+.ajuste-emprestimo{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: wrap; /* Permite que os elementos "quebrem" de linha em telas menores */
+    width: 100%;
+    max-width: 930px; /* Mantém o layout consistente */
+    gap: 20px; /* Adiciona espaçamento entre os elementos */
+}
+
+.area-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 450px;
+    height: 80px;
+}
+
+.bloco{
+    display: flex;
+    flex-direction: column;
+    font-size: 25px;
+}
+
+#efetuar{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    width: 300px;
+    height: 60px;
+    border-radius: 8px;
+    transition: 300ms;
+    background-color: rgba(204, 64, 57, 1);
+}
+
+#efetuar:hover{
+    scale: 1.05;
+}
+
+.conta{
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: space-around;
+    position: absolute;
+    margin: 20px;
+    right: 0;
+    width: 185px;
+    height: 60px;
+    padding-left: 15px;
+    background-color: rgba(238, 238, 239, 1);
+    border-radius: 100px;
+    
+}
+
+.txt{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    font-size: 15px;
+}
+
+#menu{
+    opacity: 70%;
+}
+
+.img-conta{
+    width: 50px;
+    height: 50px;
+    border-radius: 100px;
+    background-color: red;
+}
+
+#devolucaoForm {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%; /* Faz a largura ocupar todo o espaço disponível */
+    max-width: 1200px; /* Define um limite máximo */
+    padding: 20px;
+    box-shadow: 0px 5px 8px rgba(0, 0, 0, 0.199);
+    background-color: #fff; /* Adiciona fundo branco para destacar */
+    border-radius: 8px; /* Cantos arredondados */
+    box-sizing: border-box; /* Inclui padding na largura e altura totais */
+}
+
+/* Estilização para a tabela */
+#tabelaEmprestimos {
+    width: 100%;
+    max-width: 1200px; /* Consistente com o formulário */
+    margin: 0 auto;
+    border-collapse: collapse; /* Remove bordas duplas entre células */
+    box-shadow: 0px 5px 8px rgba(0, 0, 0, 0.199); /* Sombra como o formulário */
+    border-radius: 8px; /* Cantos arredondados */
+    overflow: hidden; /* Garante o efeito dos cantos arredondados */
+    background-color: #fff; /* Fundo branco para destacar */
+}
+
+/* Cabeçalho da tabela */
+#tabelaEmprestimos thead tr {
+    background-color: rgba(204, 64, 57, 1); /* Mesma cor do botão */
+    color: white;
+    text-align: left;
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+/* Células do cabeçalho */
+#tabelaEmprestimos thead th {
+    padding: 15px;
+}
+
+/* Linhas do corpo da tabela */
+#tabelaEmprestimos tbody tr {
+    border-bottom: 1px solid rgba(186, 215, 227, 1); /* Linha divisória sutil */
+    transition: background-color 0.3s ease;
+}
+
+/* Linhas alternadas */
+#tabelaEmprestimos tbody tr:nth-child(even) {
+    background-color: rgba(248, 254, 255, 1); /* Fundo suave */
+}
+
+/* Hover para linhas */
+#tabelaEmprestimos tbody tr:hover {
+    background-color: rgba(204, 64, 57, 0.1); /* Destaque suave ao passar o mouse */
+}
+
+/* Células do corpo */
+#tabelaEmprestimos tbody td {
+    padding: 15px;
+    font-size: 1rem;
+    color: #333;
+}
+
+/* Filtros */
+#filtros {
+    display: flex;
+    flex-wrap: wrap; /* Permite quebra em telas menores */
+    gap: 20px; /* Espaçamento entre os elementos */
+    max-width: 1200px;
+    margin: 0 auto 20px auto; /* Centraliza e adiciona espaçamento abaixo */
+    padding: 10px;
+    box-shadow: 0px 5px 8px rgba(0, 0, 0, 0.199);
+    border-radius: 8px;
+    font-size: 1.05rem;
+    background-color: #fff;
+}
+
+#filtros select {
+    height: 40px;
+    padding: 10px;
+    border-radius: 4px;
+    border: 1px solid rgba(186, 215, 227, 1);
+    box-sizing: border-box;
+    font-size: 1rem;
+}
+
+#filtros input {
+    width: 300px; /* Ajusta para o tamanho do contêiner pai */
+    max-width: 450px;
+    height: 40px;
+    padding: 10px;
+    border-radius: 4px;
+    border: 1px solid rgba(186, 215, 227, 1);
+    box-sizing: border-box;
+    font-size: 1rem;
+}
+
+#filtros button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: 300ms;
+    background-color: rgba(204, 64, 57, 1);
+    color: white;
+}
+
+#filtros button:hover {
+    scale: 1.05;
+    background-color: rgba(204, 64, 57, 0.9); /* Escurece no hover */
+}
+
+@media (min-width: 1236px) and (max-width: 1948px) {
+    .emprestimoForm {
+        padding: 10px;
+    }
+
+    .ajuste-emprestimo {
+        gap: 0;
+    }
+
+    input {
+        width: 400px;
+        height: 40px;
+    }
+
+    .area-btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 400px;
+        height: 96px;
+        padding: 25px;
+    }
+
+    #efetuar {
+        width: 300px;
+        height: 40px;
+        border-radius: 8px;
+        transition: 300ms;
+        background-color: rgba(204, 64, 57, 1);
+    }
+}
+
+
+@media (min-width: 1118px) and (max-width: 1235px) {
+
+    .emprestimoForm {
+        padding: 10px;
+    }
+
+    .ajuste-emprestimo {
+        gap: 0;
+    }
+
+    input {
+        width: 400px;
+        height: 40px;
+    }
+
+    .area-btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 400px;
+        height: 96px;
+        padding: 25px;
+    }
+
+    #efetuar {
+        width: 300px;
+        height: 40px;
+        border-radius: 8px;
+        transition: 300ms;
+        background-color: rgba(204, 64, 57, 1);
+    }
+
+}
+
+@media (min-width: 938px) and (max-width: 1117px) {
+
+    .emprestimoForm {
+        padding: 10px 50px;
+    }
+
+    .ajuste-emprestimo {
+        gap: 0;
+    }
+
+    input {
+        width: 300px;
+        height: 40px;
+    }
+
+    .area-btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 300px;
+        height: 96px;
+        padding: 25px;
+    }
+
+    #efetuar {
+        width: 300px;
+        height: 40px;
+        border-radius: 8px;
+        transition: 300ms;
+        background-color: rgba(204, 64, 57, 1);
+    }
+
+}
+
+@media (min-width: 757px) and (max-width: 937px) {
+
+    .emprestimoForm {
+        padding: 10px 70px;
+    }
+
+    .ajuste-emprestimo {
+        gap: 0;
+    }
+
+    input {
+        width: 220px;
+        height: 40px;
+    }
+
+    .area-btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 220px;
+        height: 96px;
+        padding: 25px;
+    }
+
+    #efetuar {
+        width: 220px;
+        height: 40px;
+        font-size: 1rem;
+        border-radius: 8px;
+        transition: 300ms;
+        background-color: rgba(204, 64, 57, 1);
+    }
+
+}
+
+@media (min-width: 718px) and (max-width: 756px) {
+
+    #title{
+        font-size: 3.5rem;
+    }
+    
+    #titleinfo{
+        font-size: 2rem;
+    }
+
+    .emprestimoForm {
+        padding: 10px 70px;
+    }
+
+    .ajuste-emprestimo {
+        gap: 0;
+    }
+
+    .label {
+        font-size: 1rem;
+    }
+
+    input {
+        width: 150px;
+        height: 40px;
+    }
+
+    .area-btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 150px;
+        height: 76px;
+    }
+
+    #efetuar {
+        width: 150px;
+        height: 40px;
+        font-size: 1rem;
+        border-radius: 8px;
+        transition: 300ms;
+        background-color: rgba(204, 64, 57, 1);
+    }
+
+}
+
+@media (max-width: 717px) {
+
+    #title{
+        text-align: center;
+        font-size: 3rem;
+    }
+    
+    #titleinfo{
+        text-align: center;
+        font-size: 2rem;
+    }
+
+    .barra-lateral {
+        position: fixed; /* Para que ela fique sobre a área principal */
+        top: 0;
+        left: -235px; /* Oculta fora da tela */
+        width: 235px; /* Largura da barra lateral */
+        height: 100vh; /* Ocupa toda a altura da viewport */
+        background-color: rgba(246, 246, 246, 1); /* Cor de fundo */
+        box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2); /* Sombra */
+        transition: left 0.3s ease; /* Animação ao abrir/fechar */
+        z-index: 1000; /* Garante que fique acima da área */
+    }
+
+    /* Quando a barra lateral estiver "aberta" */
+    .barra-lateral.open {
+        left: 0; /* Mostra a barra lateral */
+    }
+
+    /* Esconde o botão hambúrguer */
+    #menu-toggle.hidden {
+        display: none;
+    }
+
+    /* Para o botão hamburguer */
+    #menu-toggle {
+        display: flex; /* Exibe o botão */
+        position: fixed;
+        top: 20px;
+        left: 20px;
+        width: 40px;
+        height: 30px;
+        z-index: 1001; /* Acima da barra lateral */
+        flex-direction: column;
+        justify-content: space-between;
+        background: none;
+        border: none;
+        cursor: pointer;
+    }
+
+    #menu-toggle span {
+        display: block;
+        width: 100%;
+        height: 6px;
+        background-color: black;
+        border-radius: 4px;
+    }
+
+    #close-sidebar {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        width: 20px; /* Tamanho da seta */
+        height: 20px;
+        background: none;
+        border: none;
+        cursor: pointer;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    #close-sidebar::before {
+        content: '';
+        border: solid black;
+        border-width: 0 3px 3px 0; /* Apenas bordas laterais e inferior */
+        display: inline-block;
+        padding: 5px;
+        transform: rotate(135deg); /* Gira para criar o "V" de lado */
+        transition: transform 0.3s ease;
+    }
+    
+    #close-sidebar:hover::before {
+        transform: rotate(135deg) scale(1.1); /* Aumenta o tamanho ao passar o mouse */
+    }
+
+    .emprestimoForm {
+        padding: 10px;
+        box-shadow: none; /* Remove sombra para dispositivos menores */
+    }
+
+    .ajuste-emprestimo {
+        flex-direction: column; /* Coloca os elementos em uma única coluna */
+        align-items: center;
+        gap: 0;
+    }
+
+    .label {
+        font-size: 1.3rem;
+    }
+
+    input {
+        width: 250px;
+        height: 40px;
+    }
+
+    .area-btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 250px;
+        height: 76px;
+    }
+
+    #efetuar {
+        width: 250px;
+        height: 40px;
+        font-size: 1rem;
+        border-radius: 8px;
+        transition: 300ms;
+        background-color: rgba(204, 64, 57, 1);
+    }
+
+}

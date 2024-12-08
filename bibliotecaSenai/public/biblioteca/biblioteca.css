@@ -1,0 +1,482 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: "Roboto", serif;
+    font-weight: 300;
+    font-style: normal;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+/* Contêiner principal usando flexbox */
+.alinhar {
+    display: flex;
+    height: 100vh; /* Garante que ocupa toda altura da janela */
+}
+
+/* Barra lateral fixa */
+.barra-lateral {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: 235px; /* Largura fixa da barra lateral */
+    height: 100%; /* Ocupa toda a altura da tela */
+    background-color: rgba(246, 246, 246, 1);
+}
+
+/* Área principal ocupando o espaço restante sem vazar */
+.area {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    flex-grow: 1; /* Faz a área ocupar todo o espaço restante */
+    max-width: calc(100% - 235px); /* Ajusta largura para ocupar somente o restante da tela após a barra lateral */
+    height: 100%;
+    padding: 30px;
+    overflow: auto; /* Garante rolagem apenas no conteúdo da área, se necessário */
+}
+
+
+
+/* BARRA LATERAL */
+.barra-lateral img{
+    margin-top: 50px;
+    margin-bottom: 40px;
+    width: 170px;
+    height: 50px;
+}
+
+/* .barra-lateral{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: 235px;
+    height: 950px;
+    background-color: rgba(246, 246, 246, 1);
+} */
+
+.barra-lateral a{
+    text-decoration: none;
+    color: black;
+}
+
+#biblioteca{
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    background-color: rgb(255, 255, 255);
+}
+
+.opcao{
+    display: flex;
+    align-items: center;
+    padding-left: 36px;
+    gap: 10px;
+    height: 40px;
+    width: 235px;
+    cursor: pointer;
+}
+
+.opcao:hover {
+    background-color: white;
+}
+
+.drop-correction input {
+    display: flex;
+    align-items: center;
+    width: 50vw;
+    height: 50px;
+    padding-left: 20px;
+    border-radius: 4px;
+    outline: none;
+    background-color: rgb(255, 255, 255);
+    border: 1px solid rgba(236, 236, 236, 0.699);
+
+    font-size: 0.9rem;
+    background-color: transparent;
+    padding-inline: 0.5em;
+    padding-block: 0.7em;
+    border: none;
+}
+
+
+/* PERFIL DO USUARIO */
+.conta{
+    display: flex;
+    max-width: calc(100% - 100px);
+    width: 100vw;
+    margin-top: 50px;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+}
+
+.drop-correction {
+    position: relative;
+}
+
+.titulo-pesquisa {
+    font-family: "Poppins", sans-serif;
+    font-weight: 600;
+    font-size: 30px;
+}
+
+.drop-correction .dropdown-menu {
+    width: 850px;
+    font: 22px;
+    background-color: white;
+}
+
+.drop-correction #pesquisaLivros {
+    border: 1px solid #ccc;
+    font-family: "Roboto", sans-serif;
+    font-size: 16px;
+}
+
+#lupa{
+    width: 25px;
+    height: 25px;
+}
+
+/* RESULTADO DO SEARCH(EDGAR) */
+
+#resultados div {
+    border-bottom: 1px solid #ddd;
+}
+
+#resultados div:last-child {
+    border-bottom: none;
+}
+
+.pesquisar{
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
+
+
+.txt{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    font-size: 14px;
+}
+
+#menu{
+    opacity: 70%;
+}
+
+.img-conta{
+    width: 50px;
+    height: 50px;
+    border-radius: 100px;
+    background-color: red;
+}
+
+.menu{
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: space-around;
+    position: relative;
+    width: 185px;
+    height: 60px;
+    padding-left: 15px;
+    background-color: rgba(238, 238, 239, 1);
+    border-radius: 100px;
+}
+
+
+
+/* BUSCAR POR ASSUNTO */
+.container2 {
+    display: flex;
+    justify-content: center;
+    padding: 20px 50px;
+    gap: 10px;
+    flex-direction: column;
+    width: 100%; /* Garante que o container ocupe todo o espaço restante */
+    max-width: calc(100% - 100px); /* Ajusta para que o container não ultrapasse a largura da área principal */
+    margin: 30px 0;
+    background-color: rgba(238, 238, 239, 1);
+    box-shadow: 0px 7px 10px rgba(0, 0, 0, 0.199);
+}
+
+
+.div p{
+    font-family: "Poppins", sans-serif;
+    font-size: 26px;
+    font-weight: 600;
+}
+
+#searchAssuntos {
+    width: 100%;
+    font-family: "Roboto", sans-serif;
+    font-size: 16px;
+    border: none;
+}
+
+.form button {
+    border: none;
+    background: none;
+    color: #8b8ba7;
+}
+
+.form {
+    --timing: 0.3s;
+    --width-of-input: 1500px;
+    --height-of-input: 40px;
+    --border-height: 2px;
+    --input-bg: #fff;
+    --border-color: rgba(204, 64, 57, 1);
+    --border-radius: 30px;
+    --after-border-radius: 1px;
+    position: relative;
+    width: 100%;
+    height: var(--height-of-input);
+    display: flex;
+    align-items: center;
+    padding-inline: 0.8em;
+    border-radius: var(--border-radius);
+    transition: border-radius 0.5s ease;
+    background: var(--input-bg,#fff);
+}
+    
+
+    
+.form:before {
+    content: "";
+    position: absolute;
+    background: var(--border-color);
+    transform: scaleX(0);
+    transform-origin: center;
+    width: 100%;
+    height: var(--border-height);
+    left: 0;
+    bottom: 0;
+    border-radius: 1px;
+    transition: transform var(--timing) ease;
+}
+    
+.form:focus-within {
+    border-radius: var(--after-border-radius);
+}
+
+
+
+input:focus {
+    outline: none;
+}
+    
+.form:focus-within:before {
+    transform: scale(1);
+}
+    
+.reset {
+    border: none;
+    background: none;
+    opacity: 0;
+    visibility: hidden;
+}
+    
+input:not(:placeholder-shown) ~ .reset {
+    opacity: 1;
+    visibility: visible;
+}
+    
+.form svg {
+    width: 17px;
+    margin-top: 3px;
+}
+
+.ajuste {
+    position: relative;
+}
+
+/*RESULTADO DE CARREGAMENTO DO LIVRO(EDGAR)*/
+
+
+.editar-btn {
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 3px;
+            cursor: pointer;
+ }
+
+.editar-btn:hover {
+            background-color: #0056b3;
+ }
+
+/* FILTRO DE LETRAS */
+.container3 {
+    max-width: calc(100% - 100px);
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+    padding-bottom: 40px;
+    border-bottom: 1px solid #ddd;
+}
+
+.container3 button{
+    border: none;
+    background: none;
+    font-size: 16px;
+    transition: 300ms;
+    font-weight: 400;
+    cursor: pointer;
+}
+
+.container3 button:hover{
+    scale: 2;
+}
+
+#resultados {
+    display: grid;
+    grid-template-columns: repeat(5, 5fr);
+    flex-direction: row;
+    width: 100%;
+    height: 100vh;
+    list-style: none;
+    margin-top: 20px;
+    align-items: center;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    gap: 30px;
+    
+}
+
+/* #resultados li {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    padding: 10px;
+} */
+
+#resultados .img {
+    width: 130px;
+    height: 180px;
+    border-radius: 5px;
+    object-fit: cover;
+    background-color: #ffffff;
+}
+
+.column{
+    display: flex;
+    flex-direction: column;
+}
+
+
+/* QUANDO UM BOTÃO ESTÁ ATIVADO APLICA AS SEGUINTES CONFIGURAÇÕES */
+.active {
+    scale: 2;
+    filter: drop-shadow(0px 2px 2px rgba(0, 0, 0, 0.452));
+}
+
+.dropdown-menu{
+    padding: 8px;
+    cursor: pointer;
+    position: absolute;
+}
+
+.dropdown-item {
+    font-size: 18px;
+}
+
+#resultadosAssuntos .dropdown-item{
+    width: 100vw;
+}
+
+#resultadosAssuntos{
+    all:unset;
+    top: 40px;
+    border: 1px solid #ccc;
+    max-height: 150px;
+    overflow-y: auto;
+    background-color: white;
+    position: absolute;
+    z-index: 1000;
+}
+
+
+
+.dropdown-item:hover {
+    background-color: #f0f0f0;
+}
+
+.livro-tag {
+    display: inline-block;
+    margin: 5px;
+    padding: 5px 10px;
+    background-color: #007bff;
+    color: white;
+    border-radius: 15px;
+    cursor: pointer;
+}
+
+.livro-tag:hover {
+    background-color: #0056b3;
+}
+
+.tags-container {
+    margin-top: 10px;
+}
+
+#container3 button.active {
+    background-color: #007bff;
+    color: white;
+    font-weight: bold;
+}
+
+/* ASSUNTOS */
+.livro-item {
+    border: 1px solid #ccc;
+    background-color: #f9f9f9;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 5px;
+}
+
+.livro-item h3 {
+    margin-bottom:  10px;
+    margin-top: 10px;
+    text-align: center;
+}
+
+.livro-item p {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.editar-btn {
+    padding: 5px 10px;
+    background-color: #007BFF;
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    margin-top: 5px;
+    margin-left: 110px;
+    margin-bottom: 10px;
+}
+
+.editar-btn:hover {
+    background-color: #0056b3;
+}
+
+.botao-selecionado {
+    color: rgba(204, 64, 57, 1);
+    font-size: 1.2em; /* Aumenta o tamanho da letra */
+    text-shadow: 0 4px 8px rgba(204, 64, 57, 1); /* Sombra em volta da letra */
+    scale: 2;
+}

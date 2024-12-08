@@ -1,0 +1,230 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: "Roboto", serif;
+    font-weight: 300;
+    font-style: normal;
+}
+
+#title {
+    font-weight: 700;
+    position: relative;
+    font-size: 65px;
+}
+
+#titleinfo {
+    position: relative;
+    right: 0px;
+    border-bottom: 3px solid rgba(204, 64, 57, 1);
+    width: 385px;
+    font-size: 40px;
+}
+
+.line {
+    width: 970px;
+    border-bottom: 1px solid rgba(222, 222, 222, 1);
+}
+
+.alinhar {
+    display: flex;
+    max-width: 1910px;
+    margin: 0 auto;
+}
+
+.area {
+    display: flex;
+    justify-content: center;
+    width: 1685px;
+    height: 950px;
+    margin-top: -50px;
+}
+
+
+
+/* BARRA LATERAL */
+.barra-lateral img {
+    margin-top: 50px;
+    margin-bottom: 40px;
+    width: 170px;
+    height: 50px;
+}
+
+.barra-lateral {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: 235px;
+    height: 1340px;
+    background-color: rgba(246, 246, 246, 1);
+}
+
+.barra-lateral a {
+    text-decoration: none;
+    color: black;
+}
+
+.opcao {
+    display: flex;
+    align-items: center;
+    padding-left: 36px;
+    gap: 10px;
+    height: 40px;
+    width: 235px;
+    cursor: pointer;
+}
+
+.opcao:hover {
+    background-color: white;
+}
+
+input {
+    display: flex;
+    align-items: center;
+    outline: none;
+    width: 970px;
+    height: 50px;
+    padding-left: 20px;
+    border-radius: 4px;
+    font-size: 16px;
+    background-color: rgb(255, 255, 255);
+    border: 1px solid rgba(222, 222, 222, 1);
+}
+
+
+
+/* CONTAINER ONDE ESTÁ TODOS OS ELEMENTOS DO FORMULÁRIO */
+.container {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: space-around;
+    height: 1340px;
+}
+
+
+
+/* CONTAINER DO VOLUME, QUANTIDADE E EDIÇÃO */
+.container2 {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 970px;
+}
+
+.label {
+    display: flex;
+    flex-direction: column;
+    font-size: 25px;
+    margin-top: 10px;
+}
+
+#desc {
+    width: 970px;
+    height: 200px;
+}
+
+
+
+#edicao,
+#volume,
+#quantidade {
+    width: 300px;
+}
+
+
+
+/* DATA DE PUBLICAÇÃO */
+#data {
+    /* position: relative; */
+    right: 335px;
+    font-size: 35px;
+    margin-top: 10px;
+}
+
+.botoes {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 970px;
+    margin-top: 25px;
+}
+
+#enviar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    border: none;
+    cursor: pointer;
+    width: 170px;
+    height: 50px;
+    border-radius: 8px;
+    font-size: 18px;
+    transition: 300ms;
+    background-color: rgba(204, 64, 57, 1);
+}
+
+#enviar:hover {
+    scale: 1.05;
+}
+
+#add-img {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: 600;
+    gap: 12px;
+    width: 200px;
+    height: 50px;
+    transition: 300ms;
+    background-color: rgba(75, 193, 210, 0.31);
+    cursor: pointer;
+}
+
+#add-img img {
+    width: 18px;
+    height: 18px;
+}
+
+#add-img:hover {
+    scale: 1.05;
+}
+
+
+/* PERFIL DO USUARIO */
+.conta {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: space-around;
+    position: relative;
+    left: 690px;
+    top: 88px;
+    width: 185px;
+    height: 60px;
+    padding-left: 15px;
+    background-color: rgba(238, 238, 239, 1);
+    border-radius: 100px;
+}
+
+.txt {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    font-size: 14px;
+}
+
+#menu {
+    opacity: 70%;
+}
+
+.img-conta {
+    width: 50px;
+    height: 50px;
+    border-radius: 100px;
+    background-color: red;
+}
