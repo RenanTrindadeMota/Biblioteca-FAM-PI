@@ -55,6 +55,25 @@
         .assunto-tag:hover {
             background-color: #d0d0d0;
         }
+
+        #remover {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            border: none;
+            cursor: pointer;
+            width: 170px;
+            height: 50px;
+            border-radius: 8px;
+            font-size: 18px;
+            transition: 300ms;
+            background-color: rgba(204, 64, 57, 1);
+        }
+
+        #remover:hover {
+            scale: 1.05;
+        }
     </style>
 
     <div class="alinhar">
@@ -232,7 +251,7 @@
 
                     <div class="botoes">
                         <button type="submit" id="enviar">Enviar</button>
-                        <button id="img"><img src="../img/img.png">Imagem da Capa</button>
+                        <button type="submit" id="remover">Remover</button>
                     </div>
                 </form>
             </div>
@@ -385,6 +404,35 @@
                     }
                 } catch (error) {
                     alert('Erro ao salvar alterações: ' + error.message);
+                }
+            });
+
+            //FUNÇÃO DE DELETAR LIVROS
+            document.getElementById('remover').addEventListener('click', async (event) => {
+                event.preventDefault();
+
+                if (!livro || !livro.ID_Livro) {
+                    alert('Livro não encontrado ou ID inválido.');
+                    return;
+                }
+
+                const confirmacao = confirm('Tem certeza de que deseja deletar este livro?');
+                if (!confirmacao) return;
+
+                try {
+                    const response = await fetch(`http://localhost:3000/deletar-livro/${livro.ID_Livro}`, {
+                        method: 'DELETE',
+                    });
+
+                    if (response.ok) {
+                        alert('Livro deletado com sucesso.');
+                        window.location.href = "../biblioteca/biblioteca.html"; // Redireciona após a exclusão
+                    } else {
+                        const errorMessage = await response.text();
+                        alert('Erro ao deletar livro: ' + errorMessage);
+                    }
+                } catch (error) {
+                    alert('Erro na requisição: ' + error.message);
                 }
             });
 

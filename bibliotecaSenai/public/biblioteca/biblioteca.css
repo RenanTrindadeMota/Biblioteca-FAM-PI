@@ -38,7 +38,7 @@ body {
     flex-grow: 1; /* Faz a área ocupar todo o espaço restante */
     max-width: calc(100% - 235px); /* Ajusta largura para ocupar somente o restante da tela após a barra lateral */
     height: 100%;
-    padding: 30px;
+    padding: 0px;
     overflow: auto; /* Garante rolagem apenas no conteúdo da área, se necessário */
 }
 
@@ -322,7 +322,7 @@ input:not(:placeholder-shown) ~ .reset {
     display: flex;
     justify-content: center;
     gap: 25px;
-    padding-bottom: 40px;
+    padding-bottom: 30px;
     border-bottom: 1px solid #ddd;
 }
 
@@ -340,10 +340,11 @@ input:not(:placeholder-shown) ~ .reset {
 }
 
 #resultados {
-    display: grid;
+    display: flex;
     grid-template-columns: repeat(5, 5fr);
     flex-direction: row;
-    width: 100%;
+    justify-content: center;
+    width: 1500px;
     height: 100vh;
     list-style: none;
     margin-top: 20px;
@@ -393,7 +394,7 @@ input:not(:placeholder-shown) ~ .reset {
 }
 
 #resultadosAssuntos .dropdown-item{
-    width: 100vw;
+    width: fit-content;
 }
 
 #resultadosAssuntos{
@@ -444,30 +445,26 @@ input:not(:placeholder-shown) ~ .reset {
     display: flex;
     flex-direction: column;
     align-items: center;
-    border-radius: 5px;
-}
-
-.livro-item h3 {
-    margin-bottom:  10px;
-    margin-top: 10px;
+    justify-content: center;
     text-align: center;
-}
-
-.livro-item p {
-    margin-top: 5px;
-    margin-bottom: 5px;
+    justify-content: space-around;
+    border-radius: 5px;
+    height: 325px;
+    width: 225px;
+    font-size: 14px;
+    padding: 10px 10px;
 }
 
 .editar-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     padding: 5px 10px;
+    border-radius: 3px;
     background-color: #007BFF;
     color: #fff;
     border: none;
-    border-radius: 3px;
     cursor: pointer;
-    margin-top: 5px;
-    margin-left: 110px;
-    margin-bottom: 10px;
 }
 
 .editar-btn:hover {

@@ -94,23 +94,6 @@
     background-color: rgb(255, 255, 255);
 }
 
-.seta{
-    background-image: url(img/seta.png);
-    background-repeat: no-repeat;
-    background-size: cover;
-    
-    width: 14px;
-    height: 11px;
-}
-
-.add{
-    background-image: url(img/add.png);
-    background-repeat: no-repeat;
-    background-size: cover;
-    width: 20px;
-    height:20px;
-}
-
 .opcao{
     display: flex;
     align-items: center;

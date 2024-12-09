@@ -47,7 +47,7 @@ app.use(cors());
 
 // Configuração de conexão com o banco de dados
 const dbConfig = {
-    user: 'appUser1',        // Substitua com seu usuário do SQL Server
+    user: 'appUser4',        // Substitua com seu usuário do SQL Server
     password: '12345',      // Substitua com sua senha do SQL Server
     server: 'localhost',        // Ou o nome do seu servidor SQL
     database: 'Biblioteca',
@@ -354,6 +354,34 @@ app.put('/editar-livro', async (req, res) => {
     } catch (error) {
         console.error('Erro ao editar Livro:', error);
         res.status(500).send('Erro ao editar Livro: ' + error.message);
+    }
+});
+
+
+// Rota para deletar um livro
+app.delete('/deletar-livro/:ID_Livro', async (req, res) => {
+    const ID_Livro = parseInt(req.params.ID_Livro, 10);
+
+    if (isNaN(ID_Livro)) {
+        return res.status(400).send('ID do livro inválido.');
+    }
+
+    try {
+        const pool = await sql.connect(dbConfig);
+
+        const result = await pool
+            .request()
+            .input('ID_Livro', sql.Int, ID_Livro) 
+            .query('DELETE FROM Livros WHERE ID_Livro = @ID_Livro');
+
+        if (result.rowsAffected[0] === 0) {
+            return res.status(404).send('Livro não encontrado.');
+        }
+
+        res.send('Livro deletado com sucesso.');
+    } catch (err) {
+        console.error('Erro ao deletar o livro:', err);
+        res.status(500).send('Erro no servidor ao tentar deletar o livro.');
     }
 });
 

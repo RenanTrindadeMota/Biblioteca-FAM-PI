@@ -492,6 +492,20 @@ document.getElementById('container3').addEventListener('click', async (event) =>
 
                     containerLivros.appendChild(divLivro);
                 });
+
+                // Verifica se a lista de livros está vazia
+                if (livros.length === 0) {
+                    const containerLivros = document.getElementById('resultados');
+                    
+                    // Limpa resultados anteriores
+                    containerLivros.innerHTML = '';
+                    
+                    // Exibe a mensagem de "nenhum livro encontrado"
+                    const mensagem = document.createElement('p');
+                    mensagem.className = 'mensagem-nenhum-livro';
+                    mensagem.innerText = 'Nenhum livro encontrado para a letra selecionada.';
+                    containerLivros.appendChild(mensagem);
+                } 
             } catch (error) {
                 console.error('Erro ao buscar livros por letra:', error);
             }
