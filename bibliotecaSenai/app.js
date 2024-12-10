@@ -95,12 +95,13 @@ app.get('/api/livros', async (req, res) => {
                 Livros.ID_Livro,
                 Livros.Titulo,
                 Livros.Autor,
+                Livros.Imagem,
                 STRING_AGG(Assuntos.Assunto_Nome, ', ') AS Assuntos
             FROM Livros
             LEFT JOIN LivroAssunto ON Livros.ID_Livro = LivroAssunto.ID_Livro
             LEFT JOIN Assuntos ON LivroAssunto.AssuntoID = Assuntos.AssuntoID
             ${letra ? 'WHERE Livros.Titulo LIKE @letra' : ''}
-            GROUP BY Livros.ID_Livro, Livros.Titulo, Livros.Autor
+            GROUP BY Livros.ID_Livro, Livros.Titulo, Livros.Autor, Livros.Imagem
         `;
 
         const request = pool.request();
@@ -171,7 +172,8 @@ app.get('/pesquisar-assuntos', async (req, res) => {
                             l.Volume, 
                             l.Edicao, 
                             l.Quantidade, 
-                            l.AnoPublicacao, 
+                            l.AnoPublicacao,
+                            l.Imagem, 
                             a.Assunto_Nome AS Assunto
                         FROM Livros l
                         JOIN LivroAssunto la ON l.ID_Livro = la.ID_Livro
@@ -278,14 +280,15 @@ app.get('/listar-livros', async (req, res) => {
     try {
         const pool = await sql.connect(dbConfig); // Use 'sql' ao invés de 'mssql'
         const result = await pool.request().query(`
-            SELECT l.ID_Livro, l.Titulo, l.Autor, l.Editora, l.Volume, l.Edicao, l.Quantidade, l.AnoPublicacao,
+            SELECT l.ID_Livro, l.Titulo, l.Autor, l.Editora, l.Volume, l.Edicao, l.Quantidade, l.AnoPublicacao, l.Imagem,
                    STRING_AGG(a.Assunto_Nome, ', ') AS Assuntos
             FROM Livros l
             LEFT JOIN LivroAssunto la ON l.ID_Livro = la.ID_Livro
             LEFT JOIN Assuntos a ON la.AssuntoID = a.AssuntoID
-            GROUP BY l.ID_Livro, l.Titulo, l.Autor, l.Editora, l.Volume, l.Edicao, l.Quantidade, l.AnoPublicacao
+            GROUP BY l.ID_Livro, l.Titulo, l.Autor, l.Editora, l.Volume, l.Edicao, l.Quantidade, l.AnoPublicacao, l.Imagem
         `);
 
+        console.log(result.recordset); // Verifique se o campo Imagem aparece aqui
         res.json(result.recordset);
     } catch (err) {
         console.error('Erro ao listar livros:', err.message);

@@ -111,7 +111,7 @@ body {
     display: flex;
     max-width: calc(100% - 100px);
     width: 100vw;
-    margin-top: 50px;
+    margin-top: 30px;
     justify-content: space-between;
     align-items: center;
     flex-direction: row;
@@ -185,14 +185,13 @@ body {
     flex-direction: row;
     justify-content: space-around;
     position: relative;
+    left: 30px;
     width: 185px;
     height: 60px;
     padding-left: 15px;
     background-color: rgba(238, 238, 239, 1);
     border-radius: 100px;
 }
-
-
 
 /* BUSCAR POR ASSUNTO */
 .container2 {
@@ -321,7 +320,7 @@ input:not(:placeholder-shown) ~ .reset {
     width: 100%;
     display: flex;
     justify-content: center;
-    gap: 25px;
+    gap: 2vw;
     padding-bottom: 30px;
     border-bottom: 1px solid #ddd;
 }
@@ -344,7 +343,7 @@ input:not(:placeholder-shown) ~ .reset {
     grid-template-columns: repeat(5, 5fr);
     flex-direction: row;
     justify-content: center;
-    width: 1500px;
+    width: 82vw;
     height: 100vh;
     list-style: none;
     margin-top: 20px;
@@ -394,7 +393,7 @@ input:not(:placeholder-shown) ~ .reset {
 }
 
 #resultadosAssuntos .dropdown-item{
-    width: fit-content;
+    width: 100vw;
 }
 
 #resultadosAssuntos{

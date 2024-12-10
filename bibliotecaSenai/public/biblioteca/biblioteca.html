@@ -239,7 +239,7 @@
 
                 divLivro.innerHTML = `
                     <h3>${tituloTruncado}</h3>
-                    <div class="img"></div>
+                    <img src="${livro.Imagem}" class="img">
                     <p><strong>Autor:</strong> ${livro.Autor || 'Autor desconhecido'}</p>
                     <p><strong>Assuntos:</strong> ${assuntosTruncados}</p>
                     <button class="editar-btn">Editar</button>
@@ -307,7 +307,7 @@
                                 // Aqui tratamos os assuntos de forma similar às funções que funcionam
                                 divLivro.innerHTML = `
                         <h3>${livro.Titulo || 'Título indisponível'}</h3>
-                        <div class="img"></div>
+                         <img src="${livro.Imagem}" class="img">
                         <p><strong>Autor:</strong> ${livro.Autor || 'Autor desconhecido'}</p>
                         <p><strong>Assuntos:</strong> ${livro.Assuntos && livro.Assuntos.length
                                         ? Array.isArray(livro.Assuntos)
@@ -409,24 +409,24 @@
                         50
                     );
 
-                    const livroDiv = document.createElement('div');
-                    livroDiv.className = 'livro-item';
+                    const divLivro = document.createElement('div');
+                    divLivro.className = 'livro-item';
 
-                    livroDiv.innerHTML = `
-                        <h3>${tituloTruncado}</h3>
-                        <div class="img"></div>
-                        <p><strong>Autor:</strong> ${livro.Autor || 'Autor desconhecido'}</p>
-                        <p><strong>Assunto:</strong> ${assuntosTruncados}</p>
-                        <button class="editar-btn">Editar</button>
-                    `;
+                    divLivro.innerHTML = `
+                            <h3>${livro.Titulo}</h3>
+                            <img src="${livro.Imagem}" class="img">
+                            <p><strong>Autor:</strong> ${livro.Autor}</p>
+                            <p><strong>Assuntos:</strong> ${livro.Assuntos || 'Nenhum assunto'}</p>
+                            <button class="editar-btn">Editar</button>
+                        `;
 
                     // Adiciona funcionalidade ao botão "Editar"
-                    livroDiv.querySelector('.editar-btn').addEventListener('click', () => {
+                    divLivro.querySelector('.editar-btn').addEventListener('click', () => {
                         localStorage.setItem('livroSelecionado', JSON.stringify(livro));
                         window.location.href = 'editar-livro.html';
                     });
 
-                    containerLivros.appendChild(livroDiv);
+                    containerLivros.appendChild(divLivro);
                 });
             }
 
@@ -477,12 +477,12 @@ document.getElementById('container3').addEventListener('click', async (event) =>
 
                     // Preenche as informações, garantindo tratamento para valores nulos
                     divLivro.innerHTML = `
-                        <h3>${livro.Titulo || 'Título indisponível'}</h3>
-                        <div class="img"></div>
-                        <p><strong>Autor:</strong> ${livro.Autor || 'Autor desconhecido'}</p>
-                        <p><strong>Assuntos:</strong> ${livro.Assuntos && livro.Assuntos !== 'null' ? livro.Assuntos : 'Nenhum assunto'}</p>
-                        <button class="editar-btn">Editar</button>
-                    `;
+                            <h3>${livro.Titulo}</h3>
+                             <img src="${livro.Imagem}" class="img">
+                            <p><strong>Autor:</strong> ${livro.Autor}</p>
+                            <p><strong>Assuntos:</strong> ${livro.Assuntos || 'Nenhum assunto'}</p>
+                            <button class="editar-btn">Editar</button>
+                        `;
 
                     // Função do botão editar
                     divLivro.querySelector('.editar-btn').addEventListener('click', () => {
@@ -521,6 +521,8 @@ document.getElementById('container3').addEventListener('click', async (event) =>
                     const response = await fetch('http://localhost:3000/listar-livros');
                     const livros = await response.json();
 
+                    console.log(livros); // Inspecione os dados retornados pelo backend
+
                     const containerLivros = document.getElementById('resultados');
                     containerLivros.innerHTML = ''; // Limpa livros anteriores
 
@@ -537,7 +539,7 @@ document.getElementById('container3').addEventListener('click', async (event) =>
 
                             divLivro.innerHTML = `
                             <h3>${livro.Titulo}</h3>
-                            <div class="img"></div>
+                             <img src="${livro.Imagem}" class="img">
                             <p><strong>Autor:</strong> ${livro.Autor}</p>
                             <p><strong>Assuntos:</strong> ${livro.Assuntos || 'Nenhum assunto'}</p>
                             <button class="editar-btn">Editar</button>

@@ -52,7 +52,8 @@ GO
 CREATE TABLE frequencia (
 	ID_User INT IDENTITY PRIMARY KEY,
 	NomeCompleto VARCHAR(120),
-	Ident_User VARCHAR(100)
+	Ident_User VARCHAR(100),
+	DataHoraMomento DATETIME DEFAULT GETDATE()
 )
 GO
 
@@ -60,7 +61,7 @@ DELETE FROM frequencia
 WHERE ID_User = 1;
 
 ALTER TABLE frequencia
-ADD DataHoraMomento DATETIME DEFAULT GETDATE();
+ADD 
 
 SELECT *
 FROM frequencia

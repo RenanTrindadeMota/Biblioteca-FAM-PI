@@ -174,3 +174,11 @@ VALUES
 ('Casos famosos'),
 ('Crimes cibernéticos');
 GO
+
+INSERT INTO Assuntos (Assunto_Nome)
+VALUES
+
+('Economia'),
+('Educação Financeira'),
+('Finanças'),
+('Sustentabilidade')

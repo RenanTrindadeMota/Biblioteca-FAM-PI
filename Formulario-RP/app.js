@@ -8,7 +8,7 @@ app.use(express.static('public')); // Serve arquivos da pasta 'public'
 
 // Configuração de conexão com o SQL Server
 const config = {
-    user: 'appUser1',
+    user: 'appUser4',
     password: '12345',
     server: 'localhost',
     database: 'Biblioteca',
