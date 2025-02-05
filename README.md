@@ -23,13 +23,24 @@ O Projeto tem como objetivo a implementação de um sistema de biblioteca para g
 
 Antes de começar, verifique se você atendeu aos seguintes requisitos:
 
-- Você instalou a versão mais recente de `Visual Studio Code, Node.js, SQl Server Management Studio`
+- Você instalou a versão mais recente de `Visual Studio Code, Node.js, SQl Server Management Studio, Git Bash`
   
 
 ## 🚀 Instalando a Biblioteca
 
-Para instalara a Biblioteca, siga estas etapas:
+Para instalar a Biblioteca, siga estas etapas:
 
+#1 - Clone o repositório no terminal do seu VS Code, criar uma pasta para esse repositório é opcional:
+```
+git clone https://github.com/RenanTrindadeMota/Biblioteca.git
+```
+#2 - Entre no SQL Server e insira os códigos a seguir na respectiva ordem: <br>
+#2.1 - Ao entrar no SQL Server, click em Nova Consulta(ou New Query) na parte superior da tela, insira o código a seguir  e click em executar(ou run) para criar o banco de dados: <br>
+*Obs: Também é possível(e recomendado) selecionar a parte do código a ser executada com o mouse e com o botão direito executar somente o trecho, evitando executar o código inteiro novamente.
+```
+CREATE DATABASE Biblioteca
+GO
+```
 
 
 ## 😄 Seja um dos contribuidores
