@@ -1,8 +1,13 @@
+@font-face {
+  font-family: 'Inter';
+  src: url('public\fontes\Inter-Regular.ttf');
+}
+
 * {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
-    font-family: "Roboto", serif;
+    font-family: 'Inter', serif;
     font-weight: 300;
     font-style: normal;
 }
@@ -48,8 +53,7 @@ body {
 .barra-lateral img{
     margin-top: 50px;
     margin-bottom: 40px;
-    width: 170px;
-    height: 50px;
+    width: 150px;
 }
 
 /* .barra-lateral{
@@ -476,3 +480,329 @@ input:not(:placeholder-shown) ~ .reset {
     text-shadow: 0 4px 8px rgba(204, 64, 57, 1); /* Sombra em volta da letra */
     scale: 2;
 }
+
+@media (min-width: 831px) and (max-width: 1050px) {
+    .txt {
+        display: none;
+    }
+
+    .img-conta{
+        width: 60px;
+        height: 60px;
+        border-radius: 100%;
+        background-color: red;
+    }
+    
+    .menu {
+        width: 60px;
+        height: 60px;
+        border-radius: 100%;
+        margin: 20px;
+        padding: 0;
+        left: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: none;
+        position: relative;
+        background-color: rgba(238, 238, 239, 1);
+        }
+
+    .container3 {
+        max-width: calc(100% - 100px);
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        gap: 1.5vw;
+        padding-bottom: 30px;
+        border-bottom: 1px solid #ddd;
+    }
+
+    .container3 button{
+        border: none;
+        background: none;
+        font-size: 16px;
+        transition: 300ms;
+        font-weight: 400;
+        cursor: pointer;
+    }
+
+    .container3 button:hover{
+        scale: 2;
+    }
+
+}
+
+@media (min-width: 773px) and (max-width: 830px) {
+    .txt {
+        display: none;
+    }
+
+    .img-conta{
+        width: 50px;
+        height: 50px;
+        border-radius: 100%;
+        background-color: red;
+    }
+    
+    .menu {
+        width: 50px;
+        height: 50px;
+        border-radius: 100%;
+        margin: 0 50px 0;
+        padding: 0;
+        left: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: none;
+        position: relative;
+        background-color: rgba(238, 238, 239, 1);
+        }
+
+    .container3 {
+        max-width: calc(100% - 100px);
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        gap: 1vw;
+        padding-bottom: 30px;
+        border-bottom: 1px solid #ddd;
+    }
+
+    .container3 button{
+        border: none;
+        background: none;
+        font-size: 14px;
+        transition: 300ms;
+        font-weight: 400;
+        cursor: pointer;
+    }
+
+    .container3 button:hover{
+        scale: 2;
+    }
+    
+    .conta{
+        display: flex;
+        max-width: calc(100% - 100px);
+        width: 100vw;
+        margin-top: 30px;
+        justify-content: space-between;
+        align-items: center;
+        flex-direction: row;
+    }
+     
+
+}
+
+@media (min-width: 567px) and (max-width: 772px){
+    .txt {
+        display: none;
+    }
+
+    .img-conta{
+        width: 50px;
+        height: 50px; 
+        border-radius: 100%;
+        background-color: red;
+    }
+    
+    .menu {
+        width: 50px;
+        height: 50px;
+        border-radius: 100%;
+        /* margin: 0 50px 0; */
+        padding: 0;
+        left: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: none;
+        position: relative;
+        background-color: rgba(238, 238, 239, 1);
+        }
+
+    .container3 {
+        max-width: calc(100% - 100px);
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        gap: 1vw;
+        padding-bottom: 30px;
+        border-bottom: 1px solid #ddd;
+    }
+
+    .container3 button{
+        border: none;
+        background: none;
+        font-size: 12px;
+        transition: 300ms;
+        font-weight: 400;
+        cursor: pointer;
+    }
+
+    .container3 button:hover{
+        scale: 2;
+    }
+    
+    .conta{
+        display: flex;
+        max-width: calc(100% - 100px);
+        width: 100vw;
+        margin-top: 30px;
+        gap: 30px;
+        justify-content: center;
+        align-items: center;
+        flex-direction: row;
+    }
+     
+    .titulo-pesquisa {
+        font-family: "Poppins", sans-serif;
+        font-weight: 600;
+        font-size: 20px;
+    }
+
+    .drop-correction #pesquisaLivros {
+        border: 1px solid #ccc;
+        font-family: "Roboto", sans-serif;
+        font-size: 12px;
+    }
+
+    .div p{
+    font-family: "Poppins", sans-serif;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+    .barra-lateral {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        width: 200px; /* Largura fixa da barra lateral */
+        height: 100%; /* Ocupa toda a altura da tela */
+        background-color: rgba(246, 246, 246, 1);
+    }
+
+    .barra-lateral img{
+        margin-top: 50px;
+        margin-bottom: 40px;
+        width: 120px;
+    }
+
+    .barra-lateral p {
+        font-size: 12px;
+    }
+
+    .area {
+        max-width: calc(100% - 200px); /* Ajusta largura para ocupar somente o restante da tela após a barra lateral */
+    }
+
+    #searchAssuntos {
+        width: 100%;
+        font-family: "Roboto", sans-serif;
+        font-size: 12px;
+        border: none;
+    }
+
+}
+
+@media (max-width: 566px){
+    .txt {
+        display: none;
+    }
+
+    .img-conta{
+        width: 50px;
+        height: 50px; 
+        border-radius: 100%;
+        background-color: red;
+    }
+    
+    .menu {
+        width: 50px;
+        height: 50px;
+        border-radius: 100%;
+        /* margin: 0 50px 0; */
+        padding: 0;
+        left: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: none;
+        position: relative;
+        background-color: rgba(238, 238, 239, 1);
+        }
+
+    .container3 {
+        max-width: calc(100% - 100px);
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        gap: 1vw;
+        padding-bottom: 30px;
+        border-bottom: 1px solid #ddd;
+    }
+
+    .container3 button{
+        border: none;
+        background: none;
+        font-size: 12px;
+        transition: 300ms;
+        font-weight: 400;
+        cursor: pointer;
+    }
+
+    .container3 button:hover{
+        scale: 2;
+    }
+    
+    .conta{
+        display: flex;
+        max-width: calc(100% - 100px);
+        width: 100vw;
+        margin-top: 30px;
+        gap: 30px;
+        justify-content: center;
+        align-items: center;
+        flex-direction: row;
+    }
+     
+    .titulo-pesquisa {
+        font-family: "Poppins", sans-serif;
+        font-weight: 600;
+        font-size: 20px;
+    }
+
+    .drop-correction #pesquisaLivros {
+        border: 1px solid #ccc;
+        font-family: "Roboto", sans-serif;
+        font-size: 12px;
+    }
+
+    .div p{
+        font-family: "Poppins", sans-serif;
+        font-size: 20px;
+        font-weight: 600;
+    }
+
+    .barra-lateral {
+        display: none;
+    }
+
+    .area {
+        max-width: 100%; /* Ajusta largura para ocupar somente o restante da tela após a barra lateral */
+    }
+
+    #searchAssuntos {
+        width: 100%;
+        font-family: "Roboto", sans-serif;
+        font-size: 12px;
+        border: none;
+    }
+
+
+
+}
+
+

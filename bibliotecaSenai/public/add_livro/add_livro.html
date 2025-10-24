@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="add_livro.css">
-    <title>Empréstimo de Livro</title>
+    <title>Adicao de Livro</title>
 </head>
 
 <body>
@@ -59,7 +59,7 @@
 
     <div class="alinhar">
         <div class="barra-lateral">
-            <a href="../biblioteca/biblioteca.html"><img src="../img/senai_logo.png" id="img"></a>
+            <a href="../biblioteca/biblioteca.html"><img src="../img/logo_igreja.png" id="img"></a>
             <a href="../biblioteca/biblioteca.html">
                 <div class="opcao" id="biblioteca">
                     <div class="seta">
@@ -115,25 +115,6 @@
                     <p>Fazer Empréstimo</p>
                 </div>
             </a>
-            <a href="../frequencia/tabelaDePresença.html">
-                <div class="opcao" id="frequencia">
-                    <div class="frequencia">
-                        <svg width="21" height="21" viewBox="0 0 21 21" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <g clip-path="url(#clip0_378_136)">
-                                <path
-                                    d="M8.75 16.1655C8.75 16.1655 7.5 16.1655 7.5 14.8322C7.5 13.4989 8.75 9.49886 13.75 9.49886C18.75 9.49886 20 13.4989 20 14.8322C20 16.1655 18.75 16.1655 18.75 16.1655H8.75ZM13.75 8.16553C14.7446 8.16553 15.6984 7.7441 16.4017 6.99395C17.1049 6.24381 17.5 5.22639 17.5 4.16553C17.5 3.10466 17.1049 2.08725 16.4017 1.3371C15.6984 0.586955 14.7446 0.165527 13.75 0.165527C12.7554 0.165527 11.8016 0.586955 11.0983 1.3371C10.3951 2.08725 10 3.10466 10 4.16553C10 5.22639 10.3951 6.24381 11.0983 6.99395C11.8016 7.7441 12.7554 8.16553 13.75 8.16553ZM6.52 16.1655C6.33478 15.7492 6.24237 15.2929 6.25 14.8322C6.25 13.0255 7.1 11.1655 8.67 9.87219C7.88648 9.61411 7.06997 9.48815 6.25 9.49886C1.25 9.49886 0 13.4989 0 14.8322C0 16.1655 1.25 16.1655 1.25 16.1655H6.52ZM5.625 8.16553C6.4538 8.16553 7.24866 7.81434 7.83471 7.18922C8.42076 6.5641 8.75 5.71625 8.75 4.83219C8.75 3.94814 8.42076 3.10029 7.83471 2.47517C7.24866 1.85005 6.4538 1.49886 5.625 1.49886C4.7962 1.49886 4.00134 1.85005 3.41529 2.47517C2.82924 3.10029 2.5 3.94814 2.5 4.83219C2.5 5.71625 2.82924 6.5641 3.41529 7.18922C4.00134 7.81434 4.7962 8.16553 5.625 8.16553Z"
-                                    fill="#CC4039" />
-                            </g>
-                            <defs>
-                                <clipPath id="clip0_378_136">
-                                    <rect width="20.5607" height="20" fill="white" transform="translate(0 0.112549)" />
-                                </clipPath>
-                            </defs>
-                        </svg>
-                    </div>
-                    <p>Lista de Frequência</p>
-                </div>
-            </a>
             <a href="../index.html">
                 <div class="opcao" id="sair">
                     <div class="sair">
@@ -163,79 +144,74 @@
         <div class="area">
 
             <div class="container">
-                <div class="conta">
-                    <div class="txt">
-                        <p>Usuário</p>
-                        <p id="menu">Menu da conta</p>
+                <div class="container3">
+                    <p id="title">Adicionar Livros</p>
+                    <div class="line">
+                        <p id="titleinfo">Informações do Livro</p>
                     </div>
-                    <div class="img-conta"></div>
+
+                    <form id="LivrosForm">
+                        <div class="label">
+                            <label for="Assuntos">Selecionar Assunto:</label> <!-- MUDAR O INPUT PARA ESCOLHER O ASSUNTO -->
+                            <input type="text" placeholder="Selecione o Assunto" id="Assuntos" autocomplete="off">
+                        </div>
+                        <div id="results"></div>
+                        <div id="selected-assuntos"></div>
+
+                        <div class="label">
+                            <label for="Titulo">Titulo:</label>
+                            <input type="text" placeholder="Titulo do Livro" id="Titulo" required>
+                        </div>
+
+                        <div class="label">
+                            <label for="Autor">Autor:</label>
+                            <input type="text" placeholder="Nome do Autor" id="Autor" required>
+                        </div>
+
+                        <div class="label">
+                            <label for="Editora"> Editora:</label>
+                            <input type="text" placeholder="Nome da Editora" id="Editora" required>
+                        </div>
+
+                        <div class="container2">
+                            <div class="label">
+                                <label for="Volume">Volume:</label>
+                                <input type="text" placeholder="Num. do Volume" id="Volume" required>
+                            </div>
+
+                            <div class="label">
+                                <label for="Edicao">Edição:</label>
+                                <input type="text" placeholder="Num. da Edição" id="Edicao" required>
+                            </div>
+
+                            <div class="label">
+                                <label for="Quantidade">Quantidade Disponivel:</label>
+                                <input type="text" placeholder="Qtd" id="Quantidade" required>
+                            </div>
+                        </div>
+
+                        <div class="label">
+                            <label for="AnoPublicacao">Ano de Publicação</label>
+                            <input type="number" placeholder="AAAA" id="AnoPublicacao" required>
+                        </div>
+
+                    </form>
                 </div>
-                <p id="title">Adicionar Livros</p>
-                <div class="line">
-                    <p id="titleinfo">Informações do Livro</p>
+                <div class="container4">
+                    <div class="conta">
+                        <div class="txt">
+                            <p>Usuário</p>
+                            <p id="menu">Menu da conta</p>
+                        </div>
+                        <div class="img-conta"></div>
+                    </div>
                 </div>
 
-                <form id="LivrosForm">
-                    <div class="label">
-                        <label for="Assuntos">Selecionar Assunto:</label> <!-- MUDAR O INPUT PARA ESCOLHER O ASSUNTO -->
-                        <input type="text" placeholder="Selecione o Assunto" id="Assuntos" autocomplete="off">
-                    </div>
-                    <div id="results"></div>
-                    <div id="selected-assuntos"></div>
-
-                    <div class="label">
-                        <label for="Titulo">Titulo:</label>
-                        <input type="text" placeholder="Titulo do Livro" id="Titulo" required>
-                    </div>
-
-                    <div class="label">
-                        <label for="Autor">Autor:</label>
-                        <input type="text" placeholder="Nome do Autor" id="Autor" required>
-                    </div>
-
-                    <div class="label">
-                        <label for="dataEmprestimo">Descriçao</label>
-                        <input type="text" placeholder="" id="desc">
-                    </div>
-
-                    <div class="label">
-                        <label for="Editora"> Editora:</label>
-                        <input type="text" placeholder="Nome da Editora" id="Editora" required>
-                    </div>
-
-                    <div class="container2">
-                        <div class="label">
-                            <label for="Volume">Volume:</label>
-                            <input type="text" placeholder="Num. do Volume" id="Volume" required>
-                        </div>
-
-                        <div class="label">
-                            <label for="Edicao">Edição:</label>
-                            <input type="text" placeholder="Num. da Edição" id="Edicao" required>
-                        </div>
-
-                        <div class="label">
-                            <label for="Quantidade">Quantidade Disponivel:</label>
-                            <input type="text" placeholder="Qtd" id="Quantidade" required>
-                        </div>
-                    </div>
-
-                    <p id="data">Data de Publicação</p>
-                    <div class="label">
-                        <label for="AnoPublicacao"> Ano</label>
-                        <input type="number" placeholder="AAAA" id="AnoPublicacao" required>
-                    </div>
-
-
-                    <div class="botoes">
-                        <button type="submit" id="enviar">Enviar</button>
-                        <button id="img"><img src="../img/img.png">Imagem da Capa</button>
-                    </div>
-                </form>
             </div>
 
 
         </div>
+    </div>
 
 </body>
 
