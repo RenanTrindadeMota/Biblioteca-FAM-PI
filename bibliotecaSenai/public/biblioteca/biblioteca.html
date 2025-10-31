@@ -10,6 +10,12 @@
 <body>
 
     <div class="alinhar">
+                <!-- Botão Hamburger (visível apenas em mobile) -->
+        <div class="hamburger" id="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>  
         <div class="barra-lateral">
             <a href="../biblioteca/biblioteca.html"><img src="../img/logo_igreja.png" id="img"></a>
             <a href="../biblioteca/biblioteca.html">
@@ -541,6 +547,22 @@ document.getElementById('container3').addEventListener('click', async (event) =>
                     console.error('Erro ao carregar livros:', error);
                 }
             }
+
+            const hamburger = document.getElementById('hamburger');
+            const menuMobile = document.getElementById('menu-mobile');
+            const barraLateral = document.getElementById('barra-lateral');
+
+            // Clona automaticamente os links da barra lateral para o menu mobile
+            const links = barraLateral.querySelectorAll('a');
+            links.forEach(link => {
+                const clone = link.cloneNode(true);
+                menuMobile.appendChild(clone);
+            });
+
+            // Controla abertura/fechamento do menu
+            hamburger.addEventListener('click', () => {
+                menuMobile.classList.toggle('active');
+            });
 
             window.onload = carregarLivros;
 

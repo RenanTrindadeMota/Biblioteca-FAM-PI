@@ -37,8 +37,8 @@ body{
 
 .alinhar {
     display: flex;
-    max-width: 100%;
-    margin: 0 auto;
+    /* max-width: 100%; */
+    /* margin: 0 auto; */
 }
 
 .area {
@@ -46,6 +46,7 @@ body{
     justify-content: center;
     width: 100%;
     height: 100vh;
+    margin: 40px;
     /* margin-top: -50px; */
 }
 
@@ -90,7 +91,7 @@ input {
     display: flex;
     align-items: center;
     outline: none;
-    width: 970px;
+    /* width: 970px; */
     height: 50px;
     padding-left: 20px;
     border-radius: 4px;
@@ -106,8 +107,8 @@ input {
     display: flex;
     align-items: center;
     flex-direction:row;
-    /* justify-content: flex-start; */
-    padding-top: 50px;
+    justify-content: space-between;
+    padding: 50px;
     height: 100vh;
 }
 
@@ -118,7 +119,6 @@ input {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    width: 970px;
 }
 .container3{
     width: fit-content;
@@ -147,11 +147,11 @@ input {
 
 
 
-#edicao,
+/* #edicao,
 #volume,
 #quantidade {
     width: 300px;
-}
+} */
 
 
 
@@ -163,13 +163,13 @@ input {
     margin-top: 10px;
 }
 
-.botoes {
+/* .botoes {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     width: 970px;
     margin-top: 25px;
-}
+} */
 
 #enviar {
     display: flex;
@@ -247,4 +247,64 @@ input {
     height: 50px;
     border-radius: 100px;
     background-color: red;
+}
+
+@media (min-width: 900px) and (max-width: 1200px) {
+    
+    .txt {
+        display: none;
+    }
+
+    .img-conta{
+        width: 50px;
+        height: 50px;
+        border-radius: 100%;
+        background-color: red;
+    }
+    
+    #menu {
+        width: 50px;
+        height: 50px;
+        border-radius: 100%;
+        margin: 0 50px 0;
+        padding: 0;
+        left: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: none;
+        position: relative;
+        background-color: rgba(238, 238, 239, 1);
+        }
+
+    .conta { 
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: space-around;
+    position: absolute;
+    right: 20px;
+    width: 50px;
+    padding-left: 0;
+    height: 50px;
+    background-color: rgba(238, 238, 239, 1);
+    border-radius: 100px;
+    
+}
+
+.alinhar {
+    display: flex;
+    height: 100vh;
+    /* max-width: fit-content; */
+    /* margin: 0; */
+}
+     
+
+    #Assuntos, #Titulo,
+    #Autor, #Editora,
+    #Volume, #Edicao,
+    #Quantidade, #AnoPublicacao {
+        width: 800px;
+    }
+
 }
