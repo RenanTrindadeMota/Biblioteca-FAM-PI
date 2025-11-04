@@ -1,20 +1,20 @@
 @font-face {
-  font-family: 'Inter';
-  src: url('public\fontes\Inter-Regular.ttf');
+    font-family: 'Inter';
+    src: url('../fontes/Inter-Regular.ttf');
 }
 
 * {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
-    font-family: 'Inter', serif;
+    font-family: 'Inter';
     font-weight: 300;
     font-style: normal;
 }
 
-body{
+/* body{
      overflow: hidden;
-}
+} */
 
 #title {
     font-weight: 700;
@@ -35,22 +35,67 @@ body{
     border-bottom: 1px solid rgba(222, 222, 222, 1);
 }
 
+#results {
+    border: 1px solid #ccc;
+    max-height: 150px;
+    overflow-y: auto;
+    background-color: white;
+    position: absolute;
+    z-index: 1000;
+}
+
+.dropdown-item {
+    padding: 8px;
+    cursor: pointer;
+}
+
+.dropdown-item:hover {
+    background-color: #f0f0f0;
+}
+
+#selected-assuntos {
+    margin-top: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    /* Permite a quebra de linha quando necessário */
+    gap: 5px;
+    /* Espaço entre os itens */
+}
+
+.assunto-tag {
+    display: inline-block;
+    background-color: #e0e0e0;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    max-width: 200px;
+    /* Limita a largura dos tags */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    /* Adiciona reticências se o texto for muito longo */
+}
+
+.assunto-tag:hover {
+    background-color: #d0d0d0;
+}
+
 .alinhar {
     display: flex;
+    height: 100vh;
     /* max-width: 100%; */
     /* margin: 0 auto; */
 }
 
 .area {
     display: flex;
-    justify-content: center;
-    width: 100%;
-    height: 100vh;
-    margin: 40px;
-    /* margin-top: -50px; */
+    align-items: center;
+    flex-direction: column;
+    flex-grow: 1; /* Faz a área ocupar todo o espaço restante */
+    max-width: calc(100% - 235px); /* Ajusta largura para ocupar somente o restante da tela após a barra lateral */
+    height: 100%;
+    padding: 0px;
+    overflow: auto; /* Garante rolagem apenas no conteúdo da área, se necessário */
 }
-
-
 
 /* BARRA LATERAL */
 .barra-lateral img {
@@ -59,12 +104,13 @@ body{
     width: 150px;
 }
 
+/* Barra lateral fixa */
 .barra-lateral {
     display: flex;
     align-items: center;
     flex-direction: column;
-    width: 235px;
-    height: 1340px;
+    width: 235px; /* Largura fixa da barra lateral */
+    height: 100%; /* Ocupa toda a altura da tela */
     background-color: rgba(246, 246, 246, 1);
 }
 
@@ -91,7 +137,6 @@ input {
     display: flex;
     align-items: center;
     outline: none;
-    /* width: 970px; */
     height: 50px;
     padding-left: 20px;
     border-radius: 4px;
@@ -180,6 +225,7 @@ input {
     cursor: pointer;
     width: 170px;
     height: 50px;
+    margin: 10px 0px;
     border-radius: 8px;
     font-size: 18px;
     transition: 300ms;
@@ -221,11 +267,11 @@ input {
     display: flex;
     align-items: center;
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: space-between;
     position: absolute;
     right: 20px;
-    width: 185px;
-    height: 60px;
+    width: 160px;
+    height: 50px;
     padding-left: 15px;
     background-color: rgba(238, 238, 239, 1);
     border-radius: 100px;

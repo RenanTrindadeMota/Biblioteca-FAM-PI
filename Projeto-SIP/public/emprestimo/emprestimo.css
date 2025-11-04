@@ -1,8 +1,13 @@
+@font-face {
+    font-family: 'Inter';
+    src: url('../fontes/Inter-Regular.ttf');
+}
+
 * {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
-    font-family: "Roboto", serif;
+    font-family: 'Inter', serif;
     font-weight: 300;
     font-style: normal;
 }
@@ -63,8 +68,7 @@
 .barra-lateral img{
     margin-top: 50px;
     margin-bottom: 40px;
-    width: 170px;
-    height: 50px;
+    width: 150px;
 }
 
 .barra-lateral{
@@ -138,9 +142,16 @@ input{
     box-sizing: border-box; /* Inclui padding na largura e altura totais */
 }
 
-.ajuste-emprestimo{
+.ajuste-blocos {
     display: flex;
     flex-direction: row;
+    gap: 40px;
+}
+
+.ajuste-emprestimo{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     justify-content: space-between;
     flex-wrap: wrap; /* Permite que os elementos "quebrem" de linha em telas menores */
     width: 100%;
@@ -218,7 +229,7 @@ input{
 #devolucaoForm {
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
+    justify-content: center;
     align-items: center;
     width: 100%; /* Faz a largura ocupar todo o espaço disponível */
     max-width: 1200px; /* Define um limite máximo */

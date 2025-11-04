@@ -9,54 +9,6 @@
 </head>
 
 <body>
-
-    <style>
-        #results {
-            border: 1px solid #ccc;
-            max-height: 150px;
-            overflow-y: auto;
-            background-color: white;
-            position: absolute;
-            z-index: 1000;
-        }
-
-        .dropdown-item {
-            padding: 8px;
-            cursor: pointer;
-        }
-
-        .dropdown-item:hover {
-            background-color: #f0f0f0;
-        }
-
-        #selected-assuntos {
-            margin-top: 10px;
-            display: flex;
-            flex-wrap: wrap;
-            /* Permite a quebra de linha quando necessário */
-            gap: 5px;
-            /* Espaço entre os itens */
-        }
-
-        .assunto-tag {
-            display: inline-block;
-            background-color: #e0e0e0;
-            padding: 5px 10px;
-            border-radius: 5px;
-            cursor: pointer;
-            max-width: 200px;
-            /* Limita a largura dos tags */
-            overflow: hidden;
-            text-overflow: ellipsis;
-            /* Adiciona reticências se o texto for muito longo */
-        }
-
-        .assunto-tag:hover {
-            background-color: #d0d0d0;
-        }
-    </style>
-
-
     <div class="alinhar">
         <div class="barra-lateral">
             <a href="../biblioteca/biblioteca.html"><img src="../img/logo_igreja.png" id="img"></a>
@@ -193,6 +145,10 @@
                         <div class="label">
                             <label for="AnoPublicacao">Ano de Publicação</label>
                             <input type="number" placeholder="AAAA" id="AnoPublicacao" required>
+                        </div>
+
+                        <div class="botoes">
+                            <button type="submit" id="enviar">Enviar</button>
                         </div>
 
                     </form>
