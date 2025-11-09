@@ -16,7 +16,7 @@
             <span></span>
             <span></span>
         </div>  
-        <div class="barra-lateral">
+        <div class="barra-lateral" id="barra-lateral">
             <a href="../biblioteca/biblioteca.html"><img src="../img/logo_igreja.png" id="img"></a>
             <a href="../biblioteca/biblioteca.html">
                 <div class="opcao" id="biblioteca">
@@ -98,7 +98,8 @@
                 </div>
             </a>
         </div>
-
+        <div id="menu-mobile" class="menu-mobile" style="display: none;">
+        </div>
 
         <div class="area">
             <div class="conta">
@@ -226,7 +227,6 @@
 
                 divLivro.innerHTML = `
                     <h3>${tituloTruncado}</h3>
-                    <img src="${livro.Imagem}" class="img">
                     <p><strong>Autor:</strong> ${livro.Autor || 'Autor desconhecido'}</p>
                     <p><strong>Assuntos:</strong> ${assuntosTruncados}</p>
                     <button class="editar-btn">Editar</button>
@@ -294,7 +294,6 @@
                                 // Aqui tratamos os assuntos de forma similar às funções que funcionam
                                 divLivro.innerHTML = `
                         <h3>${livro.Titulo || 'Título indisponível'}</h3>
-                         <img src="${livro.Imagem}" class="img">
                         <p><strong>Autor:</strong> ${livro.Autor || 'Autor desconhecido'}</p>
                         <p><strong>Assuntos:</strong> ${livro.Assuntos && livro.Assuntos.length
                                         ? Array.isArray(livro.Assuntos)
@@ -401,7 +400,6 @@
 
                     divLivro.innerHTML = `
                             <h3>${livro.Titulo}</h3>
-                            <img src="${livro.Imagem}" class="img">
                             <p><strong>Autor:</strong> ${livro.Autor}</p>
                             <p><strong>Assuntos:</strong> ${livro.Assuntos || 'Nenhum assunto'}</p>
                             <button class="editar-btn">Editar</button>
@@ -465,7 +463,6 @@ document.getElementById('container3').addEventListener('click', async (event) =>
                     // Preenche as informações, garantindo tratamento para valores nulos
                     divLivro.innerHTML = `
                             <h3>${livro.Titulo}</h3>
-                             <img src="${livro.Imagem}" class="img">
                             <p><strong>Autor:</strong> ${livro.Autor}</p>
                             <p><strong>Assuntos:</strong> ${livro.Assuntos || 'Nenhum assunto'}</p>
                             <button class="editar-btn">Editar</button>
@@ -526,7 +523,6 @@ document.getElementById('container3').addEventListener('click', async (event) =>
 
                             divLivro.innerHTML = `
                             <h3>${livro.Titulo}</h3>
-                             <img src="${livro.Imagem}" class="img">
                             <p><strong>Autor:</strong> ${livro.Autor}</p>
                             <p><strong>Assuntos:</strong> ${livro.Assuntos || 'Nenhum assunto'}</p>
                             <button class="editar-btn">Editar</button>
@@ -548,23 +544,35 @@ document.getElementById('container3').addEventListener('click', async (event) =>
                 }
             }
 
-            const hamburger = document.getElementById('hamburger');
-            const menuMobile = document.getElementById('menu-mobile');
-            const barraLateral = document.getElementById('barra-lateral');
 
-            // Clona automaticamente os links da barra lateral para o menu mobile
-            const links = barraLateral.querySelectorAll('a');
-            links.forEach(link => {
-                const clone = link.cloneNode(true);
-                menuMobile.appendChild(clone);
-            });
+            window.onload = function() {
+                // Chame carregarLivros() aqui, se já não estiver
+                carregarLivros();
 
-            // Controla abertura/fechamento do menu
-            hamburger.addEventListener('click', () => {
-                menuMobile.classList.toggle('active');
-            });
+                const hamburger = document.getElementById('hamburger');
+                const menuMobile = document.getElementById('menu-mobile');
+                const barraLateral = document.getElementById('barra-lateral');
 
-            window.onload = carregarLivros;
+                if (!barraLateral) {
+                    console.error('Erro: Elemento com id="barra-lateral" não encontrado.');
+                    return;  // Agora é válido, pois está dentro de window.onload
+                }
+                if (!menuMobile) {
+                    console.error('Erro: Elemento com id="menu-mobile" não encontrado.');
+                    return;
+                }
+
+                const links = barraLateral.querySelectorAll('a');
+                links.forEach(link => {
+                    const clone = link.cloneNode(true);
+                    menuMobile.appendChild(clone);
+                });
+
+                // Controla abertura/fechamento do menu
+                hamburger.addEventListener('click', () => {
+                    menuMobile.classList.toggle('active');
+                });
+            };
 
         </script>
     </div>

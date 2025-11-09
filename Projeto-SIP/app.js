@@ -47,18 +47,17 @@ app.use(cors());
 
 // Configuração de conexão com o banco de dados
 const dbConfig = {
-    user: 'appUser4',        // Substitua com seu usuário do SQL Server
+    user: 'appUserFam',        // Substitua com seu usuário do SQL Server
     password: '12345',      // Substitua com sua senha do SQL Server
-    server: 'localhost',        // Ou o nome do seu servidor SQL
-    database: 'Biblioteca',
+    server: 'RENAN\\SQLEXPRESS',        // Ou o nome do seu servidor SQL
+    database: 'PROJETO_SIP',
     options: {
         encrypt: true,          // Define se a conexão será criptografada (necessário para Azure).
         enableArithAbort: true,   // Controla como erros aritméticos são tratados.
-        trustServerCertificate: true // Ignora a validação do certificado SSL,  Aceita conexões mesmo com certificado 
-                                    // autoassinado (resolve problemas de conexão SSL).
+        trustServerCertificate: true // Ignora a validação do certificado SSL,  Aceita conexões mesmo com certificado              
+        // autoassinado (resolve problemas de conexão SSL).
     }
 };
-
 
 // Função para conectar ao banco de dados:
 let pool; // Variável global para armazenar a conexão
@@ -95,13 +94,12 @@ app.get('/api/livros', async (req, res) => {
                 Livros.ID_Livro,
                 Livros.Titulo,
                 Livros.Autor,
-                Livros.Imagem,
                 STRING_AGG(Assuntos.Assunto_Nome, ', ') AS Assuntos
             FROM Livros
             LEFT JOIN LivroAssunto ON Livros.ID_Livro = LivroAssunto.ID_Livro
             LEFT JOIN Assuntos ON LivroAssunto.AssuntoID = Assuntos.AssuntoID
             ${letra ? 'WHERE Livros.Titulo LIKE @letra' : ''}
-            GROUP BY Livros.ID_Livro, Livros.Titulo, Livros.Autor, Livros.Imagem
+            GROUP BY Livros.ID_Livro, Livros.Titulo, Livros.Autor
         `;
 
         const request = pool.request();
@@ -120,13 +118,13 @@ app.get('/api/livros', async (req, res) => {
 app.get('/pesquisar', async (req, res) => {
     const termoPesquisa = req.query.termo || '';
     const sqlQuery = `
-        SELECT L.ID_Livro, L.Titulo, L.Autor, L.Editora, L.Volume, L.Edicao, L.Quantidade, L.AnoPublicacao, L.Imagem,
+        SELECT L.ID_Livro, L.Titulo, L.Autor, L.Editora, L.Volume, L.Edicao, L.Quantidade, L.AnoPublicacao,
                STRING_AGG(A.Assunto_Nome, ', ') AS Assuntos
         FROM Livros L
         LEFT JOIN LivroAssunto LA ON L.ID_Livro = LA.ID_Livro
         LEFT JOIN Assuntos A ON LA.AssuntoID = A.AssuntoID
         WHERE L.Titulo LIKE @termo OR L.Autor LIKE @termo
-        GROUP BY L.ID_Livro, L.Titulo, L.Autor, L.Editora, L.Volume, L.Edicao, L.Quantidade, L.AnoPublicacao, L.Imagem
+        GROUP BY L.ID_Livro, L.Titulo, L.Autor, L.Editora, L.Volume, L.Edicao, L.Quantidade, L.AnoPublicacao
     `;
 
     try {
@@ -173,7 +171,6 @@ app.get('/pesquisar-assuntos', async (req, res) => {
                             l.Edicao, 
                             l.Quantidade, 
                             l.AnoPublicacao,
-                            l.Imagem, 
                             a.Assunto_Nome AS Assunto
                         FROM Livros l
                         JOIN LivroAssunto la ON l.ID_Livro = la.ID_Livro
@@ -280,12 +277,12 @@ app.get('/listar-livros', async (req, res) => {
     try {
         const pool = await sql.connect(dbConfig); // Use 'sql' ao invés de 'mssql'
         const result = await pool.request().query(`
-            SELECT l.ID_Livro, l.Titulo, l.Autor, l.Editora, l.Volume, l.Edicao, l.Quantidade, l.AnoPublicacao, l.Imagem,
+            SELECT l.ID_Livro, l.Titulo, l.Autor, l.Editora, l.Volume, l.Edicao, l.Quantidade, l.AnoPublicacao,
                    STRING_AGG(a.Assunto_Nome, ', ') AS Assuntos
             FROM Livros l
             LEFT JOIN LivroAssunto la ON l.ID_Livro = la.ID_Livro
             LEFT JOIN Assuntos a ON la.AssuntoID = a.AssuntoID
-            GROUP BY l.ID_Livro, l.Titulo, l.Autor, l.Editora, l.Volume, l.Edicao, l.Quantidade, l.AnoPublicacao, l.Imagem
+            GROUP BY l.ID_Livro, l.Titulo, l.Autor, l.Editora, l.Volume, l.Edicao, l.Quantidade, l.AnoPublicacao
         `);
 
         console.log(result.recordset); // Verifique se o campo Imagem aparece aqui
@@ -397,7 +394,7 @@ app.delete('/deletar-livro/:ID_Livro', async (req, res) => {
 // Consultar o banco de dados para verificar se o usuário já existe.
 // Retornar o ID do usuário (se existir) ou null (se não existir).
 app.post('/verificarUsuario', async (req, res) => {
-    const { nomeUsuario, turma, telefone, periodo } = req.body;
+    const { nomeUsuario, telefone } = req.body;
 
     try {
         const result = await sql.query`SELECT ID_Usuario FROM Usuarios WHERE NomeUsuario = ${nomeUsuario}`;
@@ -456,13 +453,13 @@ app.post('/verificarUsuario', async (req, res) => {
 
 // Rota para registrar novo usuário
 app.post('/registrarUsuario', async (req, res) => {
-    const { nomeUsuario, turma, telefone, periodo } = req.body;
+    const { nomeUsuario, telefone } = req.body;
 
     try {
         const result = await sql.query`
             INSERT INTO Usuarios (NomeUsuario, Turma, Telefone, Periodo)
             OUTPUT INSERTED.ID_Usuario
-            VALUES (${nomeUsuario}, ${turma}, ${telefone}, ${periodo})
+            VALUES (${nomeUsuario}, ${telefone})
         `;
         res.json({ usuarioId: result.recordset[0].ID_Usuario });
     } catch (err) {
@@ -470,6 +467,7 @@ app.post('/registrarUsuario', async (req, res) => {
         res.status(500).send('Erro ao registrar usuário');
     }
 });
+
 
 // Rota para registrar o empréstimo
 app.post('/registrarEmprestimo', async (req, res) => {
@@ -500,6 +498,7 @@ app.post('/registrarEmprestimo', async (req, res) => {
         res.send('Empréstimo registrado com sucesso');
 
         // Chamar a procedure para atualizar o status
+        
         await pool.request().execute('AtualizarStatusEmprestimos');
         console.log("Procedure AtualizarStatusEmprestimos executada.");
 
@@ -555,37 +554,37 @@ app.get('/listarEmprestimos', async (req, res) => {
     }
 });
 
-app.get('/api/frequencia', async (req, res) => {
-    try {
-        const { startDate, endDate, date } = req.query;
+// app.get('/api/frequencia', async (req, res) => {
+//     try {
+//         const { startDate, endDate, date } = req.query;
 
-        let query = `
-            SELECT 
-                ID_User, 
-                NomeCompleto, 
-                Ident_User, 
-                DataHoraMomento
-            FROM frequencia
-        `;
-        const request = new sql.Request(); // Cria a requisição SQL
+//         let query = `
+//             SELECT 
+//                 ID_User, 
+//                 NomeCompleto, 
+//                 Ident_User, 
+//                 DataHoraMomento
+//             FROM frequencia
+//         `;
+//         const request = new sql.Request(); // Cria a requisição SQL
 
-        // Adiciona os parâmetros de data
-        if (date) {
-            query += " WHERE CONVERT(DATE, DataHoraMomento) = CONVERT(DATE, @date)";
-            request.input('date', sql.Date, date); // Passa o parâmetro date
-        } else if (startDate && endDate) {
-            query += " WHERE DataHoraMomento BETWEEN @startDate AND @endDate";
-            request.input('startDate', sql.DateTime, startDate); // Passa o parâmetro startDate
-            request.input('endDate', sql.DateTime, endDate); // Passa o parâmetro endDate
-        }
+//         // Adiciona os parâmetros de data
+//         if (date) {
+//             query += " WHERE CONVERT(DATE, DataHoraMomento) = CONVERT(DATE, @date)";
+//             request.input('date', sql.Date, date); // Passa o parâmetro date
+//         } else if (startDate && endDate) {
+//             query += " WHERE DataHoraMomento BETWEEN @startDate AND @endDate";
+//             request.input('startDate', sql.DateTime, startDate); // Passa o parâmetro startDate
+//             request.input('endDate', sql.DateTime, endDate); // Passa o parâmetro endDate
+//         }
 
-        const result = await request.query(query); // Executa a consulta com os parâmetros
-        res.json(result.recordset); // Retorna os resultados
-    } catch (err) {
-        console.error('Erro ao listar registros de frequência:', err);
-        res.status(500).json({ error: 'Erro ao listar registros de frequência' });
-    }
-});
+//         const result = await request.query(query); // Executa a consulta com os parâmetros
+//         res.json(result.recordset); // Retorna os resultados
+//     } catch (err) {
+//         console.error('Erro ao listar registros de frequência:', err);
+//         res.status(500).json({ error: 'Erro ao listar registros de frequência' });
+//     }
+// });
 
 
 // Agendar execução da procedure diariamente às 00:00
