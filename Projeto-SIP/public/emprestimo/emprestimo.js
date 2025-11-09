@@ -1,9 +1,7 @@
 // Registrar empréstimo
 async function registrarEmprestimo() {
     const nomeUsuario = document.getElementById("nomeUsuario").value;
-    const turma = document.getElementById("turma").value;
     const telefone = document.getElementById("telefone").value;
-    const periodo = document.getElementById("periodo").value;
     const livroId = document.getElementById("livroId").value;
     const dataEmprestimo = document.getElementById("dataEmprestimo").value;
     const dataDevolucao = document.getElementById("dataDevolucao").value;
@@ -12,7 +10,7 @@ async function registrarEmprestimo() {
         const usuarioResponse = await fetch('/verificarUsuario', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ nomeUsuario, turma, telefone, periodo })
+            body: JSON.stringify({ nomeUsuario, telefone })
         });
 
         const usuarioData = await usuarioResponse.json();
@@ -22,7 +20,7 @@ async function registrarEmprestimo() {
             const novoUsuarioResponse = await fetch('/registrarUsuario', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ nomeUsuario, turma, telefone, periodo })
+                body: JSON.stringify({ nomeUsuario, telefone })
             });
             const novoUsuarioData = await novoUsuarioResponse.json();
             usuarioId = novoUsuarioData.usuarioId;

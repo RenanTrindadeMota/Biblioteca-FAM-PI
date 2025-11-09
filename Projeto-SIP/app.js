@@ -457,7 +457,7 @@ app.post('/registrarUsuario', async (req, res) => {
 
     try {
         const result = await sql.query`
-            INSERT INTO Usuarios (NomeUsuario, Turma, Telefone, Periodo)
+            INSERT INTO Usuarios (NomeUsuario, Telefone)
             OUTPUT INSERTED.ID_Usuario
             VALUES (${nomeUsuario}, ${telefone})
         `;
@@ -474,7 +474,7 @@ app.post('/registrarEmprestimo', async (req, res) => {
     const { usuarioId, livroId, dataEmprestimo, dataDevolucao, status } = req.body;
 
     try {
-        // Consultar a quantidade do livro usando o livroId recebido
+        // Consultar a quantidade do livro
         const result = await sql.query`
             SELECT Quantidade
             FROM Livros
@@ -495,19 +495,21 @@ app.post('/registrarEmprestimo', async (req, res) => {
             VALUES (${usuarioId}, ${livroId}, ${dataEmprestimo}, ${dataDevolucao}, ${status});
         `;
 
-        res.send('Empréstimo registrado com sucesso');
+        // Chamar a procedure ANTES de enviar a resposta
+        await pool.request().execute('AtualizarStatusEmprestimo');
+        console.log("Procedure AtualizarStatusEmprestimo executada.");
 
-        // Chamar a procedure para atualizar o status
-        
-        await pool.request().execute('AtualizarStatusEmprestimos');
-        console.log("Procedure AtualizarStatusEmprestimos executada.");
+        // Agora envie a resposta (apenas uma vez)
+        res.send('Empréstimo registrado com sucesso');
 
     } catch (err) {
         console.error('Erro ao registrar empréstimo:', err);
-        res.status(500).send('Erro ao registrar empréstimo');
+        // Se ainda não enviou resposta, envie aqui
+        if (!res.headersSent) {
+            res.status(500).send('Erro ao registrar empréstimo');
+        }
     }
 });
-
 
 // Rota para registrar devolução
 app.post('/registrarDevolucao', async (req, res) => {
@@ -590,11 +592,11 @@ app.get('/listarEmprestimos', async (req, res) => {
 // Agendar execução da procedure diariamente às 00:00
 cron.schedule('0 0 * * *', async () => {
     try {
-        console.log('Executando AtualizarStatusEmprestimos...');
-        await pool.request().execute('AtualizarStatusEmprestimos');
-        console.log('Procedure AtualizarStatusEmprestimos executada com sucesso.');
+        console.log('Executando AtualizarStatusEmprestimo...');
+        await pool.request().execute('AtualizarStatusEmprestimo');
+        console.log('Procedure AtualizarStatusEmprestimo executada com sucesso.');
     } catch (err) {
-        console.error('Erro ao executar AtualizarStatusEmprestimos:', err);
+        console.error('Erro ao executar AtualizarStatusEmprestimo:', err);
     }
 });
 

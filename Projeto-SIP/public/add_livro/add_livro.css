@@ -31,7 +31,7 @@
 }
 
 .line {
-    width: 970px;
+    width: fit-content;
     border-bottom: 1px solid rgba(222, 222, 222, 1);
 }
 
@@ -208,13 +208,14 @@ input {
     margin-top: 10px;
 }
 
-/* .botoes {
+.botoes {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
-    width: 970px;
-    margin-top: 25px;
-} */
+    align-items: center;
+    justify-content: space-around;
+    /* width: fit-content; */
+    /* margin-top: 25px; */
+}
 
 #enviar {
     display: flex;
@@ -269,6 +270,7 @@ input {
     flex-direction: row;
     justify-content: space-between;
     position: absolute;
+    top: 20px;
     right: 20px;
     width: 160px;
     height: 50px;

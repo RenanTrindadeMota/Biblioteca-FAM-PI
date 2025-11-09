@@ -78,7 +78,7 @@
 
     <div class="alinhar">
         <div class="barra-lateral">
-            <a href="../biblioteca/biblioteca.html"><img src="../img/senai_logo.png" id="img"></a>
+            <a href="../biblioteca/biblioteca.html"><img src="../img/logo_igreja.png" id="img"></a>
             <a href="../biblioteca/biblioteca.html">
                 <div class="opcao" id="biblioteca">
                     <div class="seta">
@@ -190,70 +190,67 @@
                     </div>
                     <div class="img-conta"></div>
                 </div>
-                <p id="title">Editar Livros</p>
-                <div class="line">
-                    <p id="titleinfo">Informações do Livro</p>
-                </div>
+                <div class="container3">
+                    <p id="title">Editar Livros</p>
+                    <div class="line">
+                        <p id="titleinfo">Informações do Livro</p>
+                    </div>
 
-                <form id="editar-form">
-                    <div class="label">
-                        <label for="Assuntos">Selecionar Assunto:</label> 
-                        <input type="text" placeholder="Selecione o Assunto" id="Assuntos" autocomplete="off">
+                    <form id="editar-form">
+                        <div class="label">
+                            <label for="Assuntos">Selecionar Assunto:</label> 
+                            <input type="text" placeholder="Selecione o Assunto" id="Assuntos" autocomplete="off">
+                            
+                        </div>
+                        <div id="results"></div>
+                        <div id="selected-assuntos"></div>
+
+                        <div class="label">
+                            <label for="Titulo">Titulo:</label>
+                            <input type="text" placeholder="Titulo do Livro" id="Titulo" required>
+                        </div>
+
+                        <div class="label">
+                            <label for="Autor">Autor:</label>
+                            <input type="text" placeholder="Nome do Autor" id="Autor" required>
+                        </div>
+
+                        <div class="label">
+                            <label for="Editora"> Editora:</label>
+                            <input type="text" placeholder="Nome da Editora" id="Editora" required>
+                        </div>
+
+                        <div class="container2">
+                            <div class="label">
+                                <label for="Volume">Volume:</label>
+                                <input type="text" placeholder="Num. do Volume" id="Volume" required>
+                            </div>
+
+                            <div class="label">
+                                <label for="Edicao">Edição:</label>
+                                <input type="text" placeholder="Num. da Edição" id="Edicao" required>
+                            </div>
+
+                            <div class="label">
+                                <label for="Quantidade">Quantidade Disponivel:</label>
+                                <input type="text" placeholder="Qtd" id="Quantidade" required>
+                            </div>
+                        </div>
+
                         
-                    </div>
-                    <div id="results"></div>
-                    <div id="selected-assuntos"></div>
-
-                    <div class="label">
-                        <label for="Titulo">Titulo:</label>
-                        <input type="text" placeholder="Titulo do Livro" id="Titulo" required>
-                    </div>
-
-                    <div class="label">
-                        <label for="Autor">Autor:</label>
-                        <input type="text" placeholder="Nome do Autor" id="Autor" required>
-                    </div>
-
-                    <div class="label">
-                        <label for="dataEmprestimo">Descriçao</label>
-                        <input type="text" placeholder="" id="desc">
-                    </div>
-
-                    <div class="label">
-                        <label for="Editora"> Editora:</label>
-                        <input type="text" placeholder="Nome da Editora" id="Editora" required>
-                    </div>
-
-                    <div class="container2">
                         <div class="label">
-                            <label for="Volume">Volume:</label>
-                            <input type="text" placeholder="Num. do Volume" id="Volume" required>
+                            <p id="data">Data de Publicação</p>
+                            <label for="AnoPublicacao"> Ano</label>
+                            <input type="number" placeholder="AAAA" id="AnoPublicacao" required>
                         </div>
 
-                        <div class="label">
-                            <label for="Edicao">Edição:</label>
-                            <input type="text" placeholder="Num. da Edição" id="Edicao" required>
+
+                        <div class="botoes">
+                            <button type="submit" id="enviar">Enviar</button>
+                            <button type="submit" id="remover">Remover</button>
                         </div>
-
-                        <div class="label">
-                            <label for="Quantidade">Quantidade Disponivel:</label>
-                            <input type="text" placeholder="Qtd" id="Quantidade" required>
-                        </div>
-                    </div>
-
-                    
-                    <div class="label">
-                        <p id="data">Data de Publicação</p>
-                        <label for="AnoPublicacao"> Ano</label>
-                        <input type="number" placeholder="AAAA" id="AnoPublicacao" required>
-                    </div>
-
-
-                    <div class="botoes">
-                        <button type="submit" id="enviar">Enviar</button>
-                        <button type="submit" id="remover">Remover</button>
-                    </div>
-                </form>
+                    </form>
+                </div>
             </div>
 
 
